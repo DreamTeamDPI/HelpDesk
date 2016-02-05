@@ -35,10 +35,9 @@ public class UserServiceImpl implements UserService {
         return departRepository.findAll();
     }
 
-@Override
     public void delete(long id) {
-        departRepository.delete(id); //To change body of generated methods, choose Tools | Templates.
+        departRepository.delete(id); 
     }
 
-
+ 
 }
