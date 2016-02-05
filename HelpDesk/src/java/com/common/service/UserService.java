@@ -1,14 +1,14 @@
 package com.common.service;
 
 
-import com.common.model.Department;
+import com.common.model.User;
 import java.util.List;
 
-public interface DepartService {
+public interface UserService {
 
-    Department addDepart(Department depart);
+    User addUser(User user);
     void delete(long id);
-    Department editDepart(Department depart);
-    List<Department> getAll();
+    User editUser(User user);
+    List<User> getAll();
 
 }

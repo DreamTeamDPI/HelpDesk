@@ -1,23 +1,23 @@
 package com.common.service.impl;
 
-import com.common.model.Department;
-import com.common.repository.DepartRepository;
-import com.common.service.DepartService;
+import com.common.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
+import com.common.service.UserService;
+import com.common.repository.UserRepository;
 
 @Service
-public class DepartServiceImpl implements DepartService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     //@Qualifier("dep")
-    private DepartRepository departRepository;
+    private UserRepository departRepository;
 @Override
-    public Department addDepart(Department depart) {
-        Department savedBank = departRepository.saveAndFlush(depart);
+    public User addUser(User depart) {
+        User savedBank = departRepository.saveAndFlush(depart);
         return savedBank;
     }
 
@@ -26,12 +26,12 @@ public class DepartServiceImpl implements DepartService {
 //        departRepository.delete(id);
 //    }
 @Override
-    public Department editDepart(Department depart) {
+    public User editUser(User depart) {
         return departRepository.saveAndFlush(depart);
     }
 
 @Override
-    public List<Department> getAll() {
+    public List<User> getAll() {
         return departRepository.findAll();
     }
 

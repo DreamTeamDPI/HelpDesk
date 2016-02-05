@@ -5,9 +5,8 @@
  */
 package com.common.controller;
 
-import com.common.model.Department;
-import com.common.service.DepartService;
-import com.common.service.impl.DepartServiceImpl;
+import com.common.model.User;
+import com.common.service.impl.UserServiceImpl;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +16,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import com.common.service.UserService;
 
 /**
  *
  * @author SEMEN
  */
 @Controller
-public class controllerDepart {
+public class controllerUser {
     
     @Autowired
-    DepartService dep;
+    UserService dep;
 
-    @RequestMapping(value = "/" , method = RequestMethod.GET)
+    @RequestMapping(value = "pages/" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
-		List<Department> listDeparts = dep.getAll();
+		List<User> listDeparts = dep.getAll();
 		ModelAndView model = new ModelAndView("DepartList");
 		model.addObject("departList", listDeparts);
 		return model;

@@ -5,7 +5,7 @@
  */
 package com.common.repository;
 
-import com.common.model.Department;
+import com.common.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author SEMEN
  */
 
-public interface DepartRepository extends JpaRepository<Department, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 
     
