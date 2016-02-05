@@ -39,7 +39,7 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idRole", nullable = false)
-    private Integer idRole;
+    private Long idRole;
     @Column(name = "nameRole", length = 45)
     private String nameRole;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleidRole")
@@ -48,15 +48,15 @@ public class Role implements Serializable {
     public Role() {
     }
 
-    public Role(Integer idRole) {
+    public Role(Long idRole) {
         this.idRole = idRole;
     }
 
-    public Integer getIdRole() {
+    public Long getIdRole() {
         return idRole;
     }
 
-    public void setIdRole(Integer idRole) {
+    public void setIdRole(Long idRole) {
         this.idRole = idRole;
     }
 
