@@ -42,7 +42,7 @@ public class Answer implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "idAnswer", nullable = false)
-    private Integer idAnswer;
+    private Long idAnswer;
     @Column(name = "data")
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
@@ -57,15 +57,15 @@ public class Answer implements Serializable {
     public Answer() {
     }
 
-    public Answer(Integer idAnswer) {
+    public Answer(Long idAnswer) {
         this.idAnswer = idAnswer;
     }
 
-    public Integer getIdAnswer() {
+    public Long getIdAnswer() {
         return idAnswer;
     }
 
-    public void setIdAnswer(Integer idAnswer) {
+    public void setIdAnswer(Long idAnswer) {
         this.idAnswer = idAnswer;
     }
 

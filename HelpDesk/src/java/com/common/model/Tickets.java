@@ -48,7 +48,7 @@ public class Tickets implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idTickets", nullable = false)
-    private Integer idTickets;
+    private Long idTickets;
     @Basic(optional = false)
     @Column(name = "subject", nullable = false, length = 45)
     private String subject;
@@ -77,20 +77,20 @@ public class Tickets implements Serializable {
     public Tickets() {
     }
 
-    public Tickets(Integer idTickets) {
+    public Tickets(Long idTickets) {
         this.idTickets = idTickets;
     }
 
-    public Tickets(Integer idTickets, String subject) {
+    public Tickets(Long idTickets, String subject) {
         this.idTickets = idTickets;
         this.subject = subject;
     }
 
-    public Integer getIdTickets() {
+    public Long getIdTickets() {
         return idTickets;
     }
 
-    public void setIdTickets(Integer idTickets) {
+    public void setIdTickets(Long idTickets) {
         this.idTickets = idTickets;
     }
 
