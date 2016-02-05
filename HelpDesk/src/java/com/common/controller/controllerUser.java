@@ -28,11 +28,36 @@ public class controllerUser {
     @Autowired
     UserService dep;
 
-    @RequestMapping(value = "pages/" , method = RequestMethod.GET)
+    @RequestMapping(value = "pages/uDepartList" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<User> listDeparts = dep.getAll();
-		ModelAndView model = new ModelAndView("DepartList");
+		ModelAndView model = new ModelAndView("uDepartList");
 		model.addObject("departList", listDeparts);
 		return model;
+	}
+        
+        
+        @RequestMapping(value = "pages/aDepartList" , method = RequestMethod.GET)
+	public ModelAndView handleRequest1() throws Exception {
+		List<User> listDeparts = dep.getAll();
+		ModelAndView model = new ModelAndView("aDepartList");
+		model.addObject("departList", listDeparts);
+		return model;
+	}
+        
+        
+          @RequestMapping(value = "pages/delete", method = RequestMethod.GET)
+	public ModelAndView deleteUser(long id) {
+		
+		dep.delete(id);
+		return new ModelAndView("redirect:/");		
+	}
+        
+        
+        @RequestMapping(value = "list/new", method = RequestMethod.GET)
+	public ModelAndView editUser() {
+		ModelAndView model = new ModelAndView("DepartForm");
+		model.addObject("user", new User());
+		return model;		
 	}
 }

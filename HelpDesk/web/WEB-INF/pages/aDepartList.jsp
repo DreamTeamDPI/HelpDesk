@@ -33,8 +33,15 @@
                                 <td>${user.numberPhone}</td>
                                 <td>${user.email}</td>
                                 <td>${user.roleidRole.nameRole}</td>
-                                   
-                            </tr>
+                                 
+			<td>
+                                    <a href="edit?id=${user.idUser}">Edit</a>
+                                </td>  
+                                        
+                                <td>
+                                    <a href="delete?id=${user.idUser}">Delete</a>
+				</td> 
+			
 			</c:forEach>	        	
         	</table>
            
