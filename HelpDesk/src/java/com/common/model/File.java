@@ -39,7 +39,7 @@ public class File implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "idFile", nullable = false)
-    private Integer idFile;
+    private Long idFile;
     @Column(name = "name", length = 45)
     private String name;
     @Column(name = "format", length = 10)
@@ -56,15 +56,15 @@ public class File implements Serializable {
     public File() {
     }
 
-    public File(Integer idFile) {
+    public File(Long idFile) {
         this.idFile = idFile;
     }
 
-    public Integer getIdFile() {
+    public Long getIdFile() {
         return idFile;
     }
 
-    public void setIdFile(Integer idFile) {
+    public void setIdFile(Long idFile) {
         this.idFile = idFile;
     }
 

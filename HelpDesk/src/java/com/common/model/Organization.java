@@ -41,7 +41,7 @@ public class Organization implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idOrganization", nullable = false)
-    private Integer idOrganization;
+    private Long idOrganization;
     @Column(name = "organName", length = 45)
     private String organName;
     @Column(name = "adress", length = 45)
@@ -54,15 +54,15 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
-    public Organization(Integer idOrganization) {
+    public Organization(Long idOrganization) {
         this.idOrganization = idOrganization;
     }
 
-    public Integer getIdOrganization() {
+    public Long getIdOrganization() {
         return idOrganization;
     }
 
-    public void setIdOrganization(Integer idOrganization) {
+    public void setIdOrganization(Long idOrganization) {
         this.idOrganization = idOrganization;
     }
 
