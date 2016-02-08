@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * @author SEMEN
- */
+ *///
 @Controller
 public class controllerAnswer {
     @Autowired
