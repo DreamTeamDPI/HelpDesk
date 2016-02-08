@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
  * @author SEMEN
  */
 @Configuration
-@Import({WebConfig.class, DataConfig.class})
+@Import({WebConfig.class, DataConfig.class, SecurityConfiguration.class})
 @ComponentScan("com.common.service.*")
 public class AppConfig {
     
