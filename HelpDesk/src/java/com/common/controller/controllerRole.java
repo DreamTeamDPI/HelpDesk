@@ -24,7 +24,7 @@ public class controllerRole {
     @Autowired
     RoleService role;
 
-    @RequestMapping(value = "pages/rol" , method = RequestMethod.GET)
+    @RequestMapping(value = "rol" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<Role> listRoles = role.getAll();
 		ModelAndView model = new ModelAndView("RoleList");
