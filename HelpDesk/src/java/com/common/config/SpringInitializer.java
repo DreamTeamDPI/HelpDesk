@@ -31,7 +31,7 @@ public class SpringInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     protected String[] getServletMappings() {
         return new String[]{
-            "/"
+            "/*"
         };
     }
 
