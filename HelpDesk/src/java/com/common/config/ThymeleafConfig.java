@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -22,6 +23,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
     	ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
     	templateResolver.setPrefix("/WEB-INF/");
     	templateResolver.setSuffix(".html");
+        templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setTemplateMode("HTML5");
 	return templateResolver;
     }
@@ -35,6 +37,19 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
     public ThymeleafViewResolver getViewResolver(){
     	ThymeleafViewResolver viewResolver = new ThymeleafViewResolver(); 
     	viewResolver.setTemplateEngine(getTemplateEngine());
+        viewResolver.setCharacterEncoding("UTF-8");
+        viewResolver.setContentType("text/html; charset=UTF-8");
 	return viewResolver;
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        super.addResourceHandlers(registry); //To change body of generated methods, choose Tools | Templates.
+         registry.addResourceHandler ( "/resources/**" ).addResourceLocations ( "/WEB-INF/resources/" );
+        registry.addResourceHandler ( "/css/**" ).addResourceLocations ( "/WEB-INF/resources/css/" );
+
+    }
+    
+    
+    
 }
