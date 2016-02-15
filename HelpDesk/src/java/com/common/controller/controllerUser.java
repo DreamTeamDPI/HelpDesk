@@ -6,58 +6,54 @@
 package com.common.controller;
 
 import com.common.model.User;
-import com.common.service.impl.UserServiceImpl;
+import com.common.service.UserService;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.common.service.UserService;
 
 /**
  *
- * @author SEMEN
+ * @author SemmEs
  */
-@Controller
+ @Controller
 public class controllerUser {
     
     @Autowired
-    UserService dep;
+    UserService user;
 
-    @RequestMapping(value = "pages/uDepartList" , method = RequestMethod.GET)
+    @RequestMapping(value = "UserList" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
-		List<User> listDeparts = dep.getAll();
-		ModelAndView model = new ModelAndView("uDepartList");
-		model.addObject("departList", listDeparts);
+		List<User> listUsers = user.getAll();
+		ModelAndView model = new ModelAndView("UserList");
+		model.addObject("userList", listUsers);
 		return model;
 	}
         
         
-        @RequestMapping(value = "pages/aDepartList" , method = RequestMethod.GET)
-	public ModelAndView handleRequest1() throws Exception {
-		List<User> listDeparts = dep.getAll();
-		ModelAndView model = new ModelAndView("aDepartList");
-		model.addObject("departList", listDeparts);
-		return model;
-	}
+//        @RequestMapping(value = "aUserList" , method = RequestMethod.GET)
+//	public ModelAndView handleRequest1() throws Exception {
+//		List<User> listUsers = user.getAll();
+//		ModelAndView model = new ModelAndView("aUserList");
+//		model.addObject("userList", listUsers);
+//		return model;
+//	}
+//        
         
-        
-          @RequestMapping(value = "pages/delete", method = RequestMethod.GET)
+        @RequestMapping(value = "userDel", method = RequestMethod.GET)
 	public ModelAndView deleteUser(long id) {
-		
-		dep.delete(id);
+		user.delete(id);
 		return new ModelAndView("redirect:/");		
 	}
         
         
-        @RequestMapping(value = "list/new", method = RequestMethod.GET)
-	public ModelAndView editUser() {
-		ModelAndView model = new ModelAndView("DepartForm");
-		model.addObject("user", new User());
-		return model;		
-	}
+//        @RequestMapping(value = "userNew", method = RequestMethod.GET)
+//	public ModelAndView editUser() {
+//		ModelAndView model = new ModelAndView("UserForm");
+//		model.addObject("user", new User());
+//		return model;		
+//	}
 }
+  

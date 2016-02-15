@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="ru">  
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}" />
+</head>
+<body>
+    <h1>Список пользователей</h1>
+<table class="simple-little-table">
+  <thead>
+    <tr>
+      <th style="width: 100px;">Имя</th>
+      <th style="width: 100px;">Фамилия</th>
+      <th style="width: 100px;">Логин</th>
+      <th style="width: 100px;">Роль</th>
+      <th style="width: 100px;">Изменить/Удалить</th>
+      <th style="width: 100px;">Изменить/Удалить</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="user : ${userList}">
+      <td th:text="${user.firstName}">null</td>
+      <td th:text="${user.lastName}">null</td>
+      <td th:text="${user.login}">null</td>
+      <td th:text="${user.roleidRole.nameRole}">null</td>
+      <td><a class="c" href="#">Изменить</a></td>
+      <td><a class="c" href="#">Удалить</a></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
