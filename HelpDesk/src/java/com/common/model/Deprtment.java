@@ -39,7 +39,7 @@ public class Deprtment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idDeprtment", nullable = false)
-    private Integer idDeprtment;
+    private Long idDeprtment;
     @Column(name = "departName", length = 45)
     private String departName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deprtmentidDeprtment")
@@ -48,15 +48,15 @@ public class Deprtment implements Serializable {
     public Deprtment() {
     }
 
-    public Deprtment(Integer idDeprtment) {
+    public Deprtment(Long idDeprtment) {
         this.idDeprtment = idDeprtment;
     }
 
-    public Integer getIdDeprtment() {
+    public Long getIdDeprtment() {
         return idDeprtment;
     }
 
-    public void setIdDeprtment(Integer idDeprtment) {
+    public void setIdDeprtment(Long idDeprtment) {
         this.idDeprtment = idDeprtment;
     }
 

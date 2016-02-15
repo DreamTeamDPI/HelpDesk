@@ -5,15 +5,12 @@
  */
 package com.common.repository;
 
-import com.common.model.User;
+import com.common.model.Employer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author SEMEN
  */
-
-public interface UserRepository extends JpaRepository<User, Long> {
-
-        User findUserByLogin(String login);  
+public interface EmployerRepository extends JpaRepository<Employer,Long> {
 }
