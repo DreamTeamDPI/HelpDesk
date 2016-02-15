@@ -4,14 +4,55 @@
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+      <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
+    <script th:src="@{/js/newjs.js}"></script>
+     <script th:src="@{/js/bootstrap.min.js}"></script>
+     
 </head>
+    
 <body>
     <h1>Список пользователей</h1>
+    
+    <script> window.onload = test </script>
+    
+  
+    
+    
+    
+    
+    
+    <!-- Button trigger modal -->
+<button >
+        Посмотреть демо
+      </button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Вы уверенны, что хотите удалить пользователя?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary">Да</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <table class="simple-little-table">
   <thead>
     <tr>
       <th style="width: 100px;">Имя</th>
       <th style="width: 100px;">Фамилия</th>
+      <th style="width: 100px;">Отчество</th>
       <th style="width: 100px;">Логин</th>
       <th style="width: 100px;">Роль</th>
       <th style="width: 100px;">Изменить/Удалить</th>
@@ -22,10 +63,11 @@
     <tr th:each="user : ${userList}">
       <td th:text="${user.firstName}">null</td>
       <td th:text="${user.lastName}">null</td>
+      <td th:text="${user.patronomic}">null</td>
       <td th:text="${user.login}">null</td>
       <td th:text="${user.roleidRole.nameRole}">null</td>
       <td><a class="c" href="#">Изменить</a></td>
-      <td><a class="c" href="#">Удалить</a></td>
+      <td><a class="c" href="#"  data-toggle="modal" data-target="#myModal">Удалить</a></td>
     </tr>
   </tbody>
 </table>
