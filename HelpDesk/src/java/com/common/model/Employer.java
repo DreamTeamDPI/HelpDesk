@@ -33,7 +33,7 @@ public class Employer implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "idEmployer", nullable = false)
-    private Integer idEmployer;
+    private Long idEmployer;
     @JoinColumn(name = "User_idUser", referencedColumnName = "idUser", nullable = false)
     @ManyToOne(optional = false)
     private User useridUser;
@@ -44,15 +44,15 @@ public class Employer implements Serializable {
     public Employer() {
     }
 
-    public Employer(Integer idEmployer) {
+    public Employer(Long idEmployer) {
         this.idEmployer = idEmployer;
     }
 
-    public Integer getIdEmployer() {
+    public Long getIdEmployer() {
         return idEmployer;
     }
 
-    public void setIdEmployer(Integer idEmployer) {
+    public void setIdEmployer(Long idEmployer) {
         this.idEmployer = idEmployer;
     }
 

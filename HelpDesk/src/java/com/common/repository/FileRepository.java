@@ -5,15 +5,13 @@
  */
 package com.common.repository;
 
-import com.common.model.User;
+import com.common.model.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author SEMEN
  */
-
-public interface UserRepository extends JpaRepository<User, Long> {
-
-        User findUserByLogin(String login);  
+public interface FileRepository extends JpaRepository<File,Long> {
+    
 }

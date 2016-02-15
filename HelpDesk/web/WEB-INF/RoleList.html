@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="ru">  
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}" />
+</head>
+<body>
+    <h1>Hi</h1>
+ 
+<h2>Fellow Spring Framework Gurus!!!</h2>
+
+<table class="simple-little-table">
+  <thead>
+    <tr>
+      <th style="width: 150px;">ИД</th>
+      <th style="width: 100px;">РОЛЬ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="role : ${roleList}">
+      <td th:text="${role.idRole}">null</td>
+      <td th:text="${role.nameRole}">null</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

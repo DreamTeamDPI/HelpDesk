@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ 
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>
+  
+ <link rel="stylesheet" type="text/css" th:href="@{/css/newcss.css}" />
+     
+</head>
+<body>
+<h1>Список ответов</h1>
+ <table class="simple-little-table">
+  <thead>
+    <tr>
+      <th >Ид</th>
+      <th >Текст</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="prod : ${roleList}">
+      <td th:text="${prod.idAnswer}">1</td>
+      <td th:text="${prod.text}">2</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

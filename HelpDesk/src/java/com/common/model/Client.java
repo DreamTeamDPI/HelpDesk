@@ -36,7 +36,7 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idClient", nullable = false)
-    private Integer idClient;
+    private Long idClient;
     @JoinColumn(name = "User_idUser", referencedColumnName = "idUser", nullable = false)
     @ManyToOne(optional = false)
     private User useridUser;
@@ -47,15 +47,15 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Integer idClient) {
+    public Client(Long idClient) {
         this.idClient = idClient;
     }
 
-    public Integer getIdClient() {
+    public Long getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(Integer idClient) {
+    public void setIdClient(Long idClient) {
         this.idClient = idClient;
     }
 

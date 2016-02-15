@@ -10,5 +10,6 @@ public interface UserService {
     void delete(long id);
     User editUser(User user);
     List<User> getAll();
-
+    User findByLogin(String login);
+        
 }
