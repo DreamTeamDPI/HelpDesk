@@ -23,10 +23,10 @@ public class controllerAnswer {
     @Autowired
     private AnswerService answService;
     
-    @RequestMapping(value = "pages/answ" , method = RequestMethod.GET)
+    @RequestMapping(value = "/answ" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<Answer> listRoles = answService.getAll();
-		ModelAndView model = new ModelAndView("AnswerList");
+		ModelAndView model = new ModelAndView("TiketList");
 		model.addObject("roleList", listRoles);
 		return model;
 	}

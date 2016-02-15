@@ -22,6 +22,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
     public ServletContextTemplateResolver getTemplateResolver() {
     	ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
     	templateResolver.setPrefix("/WEB-INF/");
+        templateResolver.setCharacterEncoding("UTF-8");
     	templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setTemplateMode("HTML5");
