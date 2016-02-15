@@ -1,0 +1,18 @@
+H1, H2 {
+ color: navy;
+ font-size: 200%;
+ font-family: Arial, Verdana, sans-serif;
+ text-align: center;
+}
+
+.table {
+  background: maroon; /* Цвет фона таблицы */
+  color: white; /* Цвет текста */
+  border: 5px double #000; /* Рамка вокруг таблицы */
+}
+
+TD, TH {
+   background: navy; /* Цвет фона ячеек */
+   padding: 5px;
+   border: 1px solid #fff; /* Рамка вокруг ячеек */
+}
