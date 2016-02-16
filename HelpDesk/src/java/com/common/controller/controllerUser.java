@@ -27,8 +27,11 @@ public class controllerUser {
     @RequestMapping(value = "UserList" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<User> listUsers = user.getAll();
+                
 		ModelAndView model = new ModelAndView("UserList");
 		model.addObject("userList", listUsers);
+                model.addObject("size",listUsers.size());
+                
 		return model;
 	}
         

@@ -6,26 +6,21 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
       <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
-    <script th:src="@{/js/newjs.js}"></script>
      <script th:src="@{/js/bootstrap.min.js}"></script>
      
 </head>
     
+    <ul class="nav nav-tabs">
+  <li ><a href="/">Главная</a></li>
+  <li class="active"> <a href="#">Пользователей <span class="badge" th:text="${size}"> null"</span></a></li>
+  <li><a href="#">Тикеты</a></li>
+</ul>
+
+    
 <body>
     <h1>Список пользователей</h1>
-    
-    <script> window.onload = test </script>
-    
-  
-    
-    
-    
-    
-    
-    <!-- Button trigger modal -->
-<button >
-        Посмотреть демо
-      </button>
+   
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -45,7 +40,7 @@
 
 
 
-
+<div class = "marh">
 
 <table class="simple-little-table">
   <thead>
@@ -71,5 +66,6 @@
     </tr>
   </tbody>
 </table>
+    </div>
 </body>
 </html>
