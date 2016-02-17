@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="ru">  
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+      <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
+     <script th:src="@{/js/bootstrap.min.js}"></script>
+     <script th:src="@{/js/ajaxExample.js}"></script>
+</head>
+    
+<ul class="nav nav-tabs">
+  <li ><a href="/">Главная</a></li>
+  <li class="active"> <a href="#">Пользователей <span class="badge" th:text="${size}"> null"</span></a></li>
+  <li><a href="#">Тикеты</a></li>
+</ul>
+
+    
+<body>
+    <h1>Список пользователей</h1>
+   
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Вы уверенны, что хотите удалить пользователя?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary">Да</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<p><input type="button" onclick="clickme()" value=" click me "/></p>
+<br/>
+
+<div class = "marh">
+
+<table class="simple-little-table">
+  <thead>
+    <tr>
+      <th style="width: 100px;">Имя</th>
+      <th style="width: 100px;">Фамилия</th>
+      <th style="width: 100px;">Отчество</th>
+      <th style="width: 100px;">Логин</th>
+      <th style="width: 100px;">Роль</th>
+      <th style="width: 100px;">Изменить/Удалить</th>
+      <th style="width: 100px;">Изменить/Удалить</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="user : ${userList}">
+      <td th:text="${user.firstName}">null</td>
+      <td th:text="${user.lastName}">null</td>
+      <td th:text="${user.patronomic}">null</td>
+      <td th:text="${user.login}">null</td>
+      <td th:text="${user.roleidRole.nameRole}">null</td>
+      <td><a class="c" href="#">Изменить</a></td>
+      <td><a class="c" href="#"  data-toggle="modal" data-target="#myModal">Удалить</a></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+</body>
+</html>

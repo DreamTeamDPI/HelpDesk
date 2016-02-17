@@ -48,7 +48,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
         super.addResourceHandlers(registry); //To change body of generated methods, choose Tools | Templates.
          registry.addResourceHandler ( "/resources/**" ).addResourceLocations ( "/WEB-INF/resources/" );
         registry.addResourceHandler ( "/css/**" ).addResourceLocations ( "/WEB-INF/resources/css/" );
-
+    registry.addResourceHandler ( "/js/**" ).addResourceLocations ( "/WEB-INF/resources/js/" );
     }
     
     
