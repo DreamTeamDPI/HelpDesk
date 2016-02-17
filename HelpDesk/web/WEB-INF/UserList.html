@@ -11,9 +11,9 @@
 </head>
     
 <ul class="nav nav-tabs">
-  <li ><a href="/">Главная</a></li>
-  <li class="active"> <a href="#">Пользователей <span class="badge" th:text="${size}"> null"</span></a></li>
-  <li><a href="#">Тикеты</a></li>
+  <li ><a th:href="@{/}">Главная</a></li>
+  <li class="active"> <a th:href="@{/UserList}">Пользователей <span class="badge" th:text="${size}"> null"</span></a></li>
+  <li><a th:href="@{/answ}">Тикеты</a></li>
 </ul>
 
     

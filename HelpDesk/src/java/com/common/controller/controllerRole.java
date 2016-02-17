@@ -27,7 +27,7 @@ public class controllerRole {
     @RequestMapping(value = "/rol" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<Role> listRoles = role.getAll();
-		ModelAndView model = new ModelAndView("RoleList");
+		ModelAndView model = new ModelAndView("pages/RoleList");
 		model.addObject("roleList", listRoles);
 		return model;
 	}
