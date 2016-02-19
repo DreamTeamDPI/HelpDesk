@@ -10,41 +10,44 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-@Configuration
+
+
+@Configuration 
 @EnableWebMvc
 @ComponentScan("com.common.controller")
-public class ThymeleafConfig extends WebMvcConfigurerAdapter {
+public class ThymeleafConfig extends WebMvcConfigurerAdapter{
 
-    //start Thymeleaf specific configuration
-    @Bean(name = "templateResolver")
+	 //start Thymeleaf specific configuration
+    @Bean(name ="templateResolver")	
     public ServletContextTemplateResolver getTemplateResolver() {
-        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/");
+    	ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+    	templateResolver.setPrefix("/WEB-INF/");
         templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setSuffix(".html");
+    	templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setTemplateMode("HTML5");
-        return templateResolver;
+	return templateResolver;
     }
 
-    @Bean(name = "templateEngine")
+    @Bean(name ="templateEngine")	    
     public SpringTemplateEngine getTemplateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(getTemplateResolver());
-        return templateEngine;
+    	SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+    	templateEngine.setTemplateResolver(getTemplateResolver());
+        //templateEngine.addDialect(new SpringSecurityDialect());
+	return templateEngine;
     }
-
-    @Bean(name = "viewResolver")
-    public ThymeleafViewResolver getViewResolver() {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(getTemplateEngine());
+    @Bean(name="viewResolver")
+    public ThymeleafViewResolver getViewResolver(){
+    	ThymeleafViewResolver viewResolver = new ThymeleafViewResolver(); 
+    	viewResolver.setTemplateEngine(getTemplateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
         viewResolver.setContentType("text/html; charset=UTF-8");
-        return viewResolver;
+	return viewResolver;
     }
 
     @Override
@@ -90,9 +93,10 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         super.addResourceHandlers(registry); //To change body of generated methods, choose Tools | Templates.
-        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
-        registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/resources/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/resources/js/");
+         registry.addResourceHandler ( "/resources/**" ).addResourceLocations ( "/WEB-INF/resources/" );
+        registry.addResourceHandler ( "/css/**" ).addResourceLocations ( "/WEB-INF/resources/css/" );
+    registry.addResourceHandler ( "/js/**" ).addResourceLocations ( "/WEB-INF/resources/js/" );
     }
-
+    
+    
 }
