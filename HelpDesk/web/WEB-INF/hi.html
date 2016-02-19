@@ -34,20 +34,7 @@
 <div align="center" >
     
     
-    <form class="form-inline" role="form"   method="post">
-  <div class="form-group">
-    <label class="sr-only" for="exampleInputEmail2">Login</label>
-    <input type="login" class="form-control" id="exampleInputEmail2" placeholder="Введите login"/>
-  </div>
-  <div class="form-group">
-    <label class="sr-only" for="exampleInputPassword2">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Пароль"/>
-  </div>
-  <div class="checkbox">
-    
-  </div>
-  <button type="submit" class="btn btn-default">Войти</button>
-</form>
+   
     
     
   
@@ -63,8 +50,8 @@
                 <div th:if="${param.logout}" class="alert alert-success"> 
                     You have been logged out.
                 </div>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username"/>        
+                <label for="login">Username</label>
+                <input type="text" id="ssoId" name="ssoId"/>        
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password"/>    
                 <div class="form-actions">
@@ -76,12 +63,9 @@
     
     
     
-    
-    
-    
-<a  href = "HelpDesk/UserList" class ="c">Пользователи</a>
-<a  href = "HelpDesk/answ" class ="c">Ответы</a>
-<a href = "HelpDesk/rol" class ="c">Роли</a>
+<a  th:href = "@{/UserList}" class ="c">Пользователи</a>
+<a  th:href = "@{/answ}" class ="c">Ответы</a>
+<a th:href = "@{/rol}" class ="c">Роли</a>
 </div>
 </body>
 </html>
