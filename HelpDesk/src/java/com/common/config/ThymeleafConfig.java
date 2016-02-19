@@ -38,7 +38,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
     public SpringTemplateEngine getTemplateEngine() {
     	SpringTemplateEngine templateEngine = new SpringTemplateEngine();
     	templateEngine.setTemplateResolver(getTemplateResolver());
-        //templateEngine.addDialect(new SpringSecurityDialect());
+        templateEngine.addDialect(new SpringSecurityDialect());
 	return templateEngine;
     }
     @Bean(name="viewResolver")

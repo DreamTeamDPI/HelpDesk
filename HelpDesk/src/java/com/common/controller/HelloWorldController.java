@@ -42,7 +42,7 @@ public class HelloWorldController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
-		return "hi";
+		return "UserList";
 	}
 
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
