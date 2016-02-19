@@ -31,18 +31,18 @@ public class HelloWorldController {
 	@RequestMapping(value = "/db", method = RequestMethod.GET)
 	public String dbaPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
-		return "UserList";
+		return "hi";
 	}
 
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
-		return "Error";
+		return "hi";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
-		return "UserList";
+		return "hi";
 	}
 
 	@RequestMapping(value="/logout", method = RequestMethod.GET)

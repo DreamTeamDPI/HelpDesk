@@ -26,7 +26,7 @@ public class controllerAnswer {
     @RequestMapping(value = "/answ" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<Answer> listRoles = answService.getAll();
-		ModelAndView model = new ModelAndView("TiketList");
+		ModelAndView model = new ModelAndView("pages/TiketList");
 		model.addObject("roleList", listRoles);
 		return model;
 	}

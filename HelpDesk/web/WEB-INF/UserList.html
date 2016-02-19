@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="ru">  
+    
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}" />
@@ -14,6 +15,7 @@
   <li ><a th:href="@{/}">Главная</a></li>
   <li class="active"> <a th:href="@{/UserList}">Пользователей <span class="badge" th:text="${size}"> null"</span></a></li>
   <li><a th:href="@{/answ}">Тикеты</a></li>
+  <li><a th:href="@{/logout}">Выход</a></li>
 </ul>
 
     
@@ -40,7 +42,7 @@
 
 
 
-<p><input type="button" onclick="clickme()" value=" click me "/></p>
+<p  sec:authorize="hasRole('ROLE_USER')"><input  type="button" onclick="clickme()" value=" click me "/></p>
 <br/>
 
 <div class = "marh">

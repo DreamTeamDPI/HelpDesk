@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -32,6 +33,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
     public SpringTemplateEngine getTemplateEngine() {
     	SpringTemplateEngine templateEngine = new SpringTemplateEngine();
     	templateEngine.setTemplateResolver(getTemplateResolver());
+        //templateEngine.addDialect(new SpringSecurityDialect());
 	return templateEngine;
     }
     @Bean(name="viewResolver")
@@ -50,7 +52,6 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
         registry.addResourceHandler ( "/css/**" ).addResourceLocations ( "/WEB-INF/resources/css/" );
     registry.addResourceHandler ( "/js/**" ).addResourceLocations ( "/WEB-INF/resources/js/" );
     }
-    
     
     
 }

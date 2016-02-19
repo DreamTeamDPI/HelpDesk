@@ -39,11 +39,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/home", "/rol").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/UserList").access("hasRole('ADMIN')")
-                .antMatchers("/db/**").access("hasRole('ADMIN') or hasRole('USER')")
+         
+                .antMatchers("/UserList").access("hasRole('ADMIN') or hasRole('USER')")
                 //.antMatchers("/rol/**").access("hasRole('USER')")
                 .and().formLogin().loginPage("/login")
                 .usernameParameter("ssoId").passwordParameter("password")
+                
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
     }
