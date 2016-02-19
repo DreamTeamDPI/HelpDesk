@@ -2,7 +2,7 @@
 function clickme() {
     var url = window.location.href + "/time";
     $.get(url, {name: "name"}, function (resp) {
-        alert(resp);
+        alert(resp.idUser);
        // var obj = JSON.parse(resp);
         //alert("data   " + obj.firstName);
     }).done(function () {
@@ -10,8 +10,5 @@ function clickme() {
     })
             .fail(function () {
                 alert(window.location.href + "/time");
-            })
-            .always(function () {
-                alert("finished");
             });
 }

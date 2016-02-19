@@ -5,11 +5,13 @@
  */
 package com.common.controller;
 
+import com.common.model.AjaxUser;
 import com.common.model.User;
 import com.common.service.UserService;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,9 +41,9 @@ public class controllerUser {
 	}
         
     @RequestMapping(value = "UserList/time", method = RequestMethod.GET)
-    public @ResponseBody String getTime(@RequestParam String name) {
+    public @ResponseBody User getTime(@RequestParam String name) {
       String result = "Time for " + name + " is " + new Date().toString();
-      return result;//user.findByLogin("SemmEs");
+      return new User();//result;//user.findByLogin("SemmEs");
     }   
         
 //        @RequestMapping(value = "aUserList" , method = RequestMethod.GET)
