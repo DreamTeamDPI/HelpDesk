@@ -75,7 +75,10 @@ public class User implements Serializable {
     private Role roleidRole;
 
     public User() {
-        this.idUser = new Long(20);
+        this.idUser = new Long(100);
+        this.password = "123";
+        this.login = "alex";
+        this.roleidRole = new Role(new Long(2));
     }
 
     public User(Long idUser) {
