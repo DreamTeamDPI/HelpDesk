@@ -28,7 +28,6 @@ public class controllerUser {
     
     @Autowired
     UserService user;
-
     @RequestMapping(value = "UserList" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<User> listUsers = user.getAll();
@@ -55,10 +54,10 @@ public class controllerUser {
 //	}
 //        
         
-        @RequestMapping(value = "userDel", method = RequestMethod.GET)
-	public ModelAndView deleteUser(long id) {
+        @RequestMapping(value = "UserList/del", method = RequestMethod.GET)
+	public String deleteUser(long id) {
 		user.delete(id);
-		return new ModelAndView("redirect:/");		
+		return "hi";		
 	}
         
         
