@@ -35,7 +35,7 @@
                 <label for="login">Username</label>
                 <input  type="text" id="ssoId" name="ssoId"/>        
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password"/>    
+                <input type="password" id="password" name="password"  placeholder="Ваш пароль"/>    
                 <div class="form-actions">
                     <button type="submit" class="btn">Log in</button>
                 </div>
@@ -45,10 +45,16 @@
     
     
     
-<a  th:href = "@{/UserList}" class ="c">Пользователи</a>
-<a  th:href = "@{/answ}" class ="c">Ответы</a>
-<a th:href = "@{/rol}" class ="c">Роли</a>
+
 
 </div>
+<div id="result">Тут будет ответ от сервера</div><br /><br />
+2
+<div onclick="SendGet();">Отправить GET запрос через Ajax</div><br />
+3
+<div onclick="SendPost();">Отправить POST запрос через Ajax</div><br />
+4
+<div onclick="SendHead();">Отправить HEAD запрос через Ajax</div><br />
+
 </body>
 </html>

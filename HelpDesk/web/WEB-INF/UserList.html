@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="ru">  
     
     <title>Spring Framework Guru</title>
@@ -12,9 +13,10 @@
 </head>
     
 <ul class="nav nav-tabs">
-  <li ><a th:href="@{/}">Главная</a></li>
+  
   <li class="active"> <a th:href="@{/UserList}">Пользователей <span class="badge" th:text="${size}"> null"</span></a></li>
-  <li><a th:href="@{/answ}">Тикеты</a></li>
+  <li><a th:href="@{/answ}">Ответы</a></li>
+    <li><a th:href="@{/rol}">Роли</a></li>
   <li><a th:href="@{/logout}">Выход</a></li>
 </ul>
 

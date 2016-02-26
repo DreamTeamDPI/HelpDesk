@@ -15,14 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HelloWorldController {
 
-	
-	
-	
-
-	
-
-	
-
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
 		return "hi";
@@ -35,7 +27,7 @@ public class HelloWorldController {
 		if (auth != null){    
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "redirect:/";
+		return "redirect:/login?logout";
 	}
 
 	private String getPrincipal(){
