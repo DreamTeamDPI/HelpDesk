@@ -9,6 +9,10 @@
       <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
      <script th:src="@{/js/bootstrap.min.js}"></script>
      <script th:src="@{/js/ajaxExample.js}"></script>
+     <script type="text/javascript" th:src="@{/js/serializejson.js}"></script>
+
+     
+     
 </head>
     
 <ul class="nav nav-tabs">
@@ -72,5 +76,43 @@
   </tbody>
 </table>
     </div>
+
+<!--<form id="testForm" action="javascript:test()">-->
+<!--<form id="addForm" onsubmit="addUser();return false;" th:object="${newUser}" method="post">
+    <input type="number" name="idUser" th:field="*{idUser}"/><br/>
+    <input type="text" name="firstName" th:field="*{firstName}" /><br/>
+    <input type="text" name="lastName" th:field="*{lastName}" /><br/>
+    <input type="text" name="login" th:field="*{login}" /><br/>
+    <input type="text" name="password" th:field="*{password}" /><br/>
+    <input type="submit" value="click"/>
+</form>-->
+<form onsubmit="get_params(this);return false;" name="User" id="addForm" th:object="${newUser}" method="post">
+    <input type="number" name="idUser" th:field="*{idUser}"/><br/>
+    <input type="text" name="firstName" th:field="*{firstName}" /><br/>
+    <input type="text" name="lastName" th:field="*{lastName}" /><br/>
+    <input type="text" name="login" th:field="*{login}" /><br/>
+    <input type="text" name="password" th:field="*{password}" /><br/>
+    <button type="submit" onclick="addUser()">login</button>//найти метод пересылки
+</form>
+
+<!--<form  onsubmit="get_params(this);return false;" >
+
+<input type="test" value="qwe" />
+
+<input type="test" value="asd" />
+
+<input type="submit" value="zxc" />
+
+</form>-->
+
+
+<!--<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>-->
+<br/>
+
 </body>
 </html>

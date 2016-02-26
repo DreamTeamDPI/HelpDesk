@@ -5,7 +5,7 @@
  */
 package com.common.controller;
 
-import com.common.model.AjaxUser;
+import com.common.model.Role;
 import com.common.model.User;
 import com.common.service.UserService;
 import java.util.Date;
@@ -35,24 +35,15 @@ public class controllerUser {
 		ModelAndView model = new ModelAndView("UserList");
 		model.addObject("userList", listUsers);
                 model.addObject("size",listUsers.size());
-                
+                model.addObject("newUser",new User(2L));
 		return model;
 	}
         
     @RequestMapping(value = "UserList/time", method = RequestMethod.GET)
     public @ResponseBody User getTime(@RequestParam String name) {
-      String result = "Time for " + name + " is " + new Date().toString();
+      //String result = "Time for " + name + " is " + new Date().toString();
       return new User();//result;//user.findByLogin("SemmEs");
     }   
-        
-//        @RequestMapping(value = "aUserList" , method = RequestMethod.GET)
-//	public ModelAndView handleRequest1() throws Exception {
-//		List<User> listUsers = user.getAll();
-//		ModelAndView model = new ModelAndView("aUserList");
-//		model.addObject("userList", listUsers);
-//		return model;
-//	}
-//        
         
         @RequestMapping(value = "UserList/del", method = RequestMethod.GET)
 	public String deleteUser(long id) {
@@ -60,7 +51,14 @@ public class controllerUser {
 		return "hi";		
 	}
         
-        
+        @RequestMapping(value = "UserList/add", method = RequestMethod.GET)
+        public @ResponseBody User addUser(User type){
+            //user.addUser(newUser);
+            type.setRoleidRole(new Role(2L));
+            user.addUser(type);
+            //System.out.println("ok");
+            return type;
+        }
 //        @RequestMapping(value = "userNew", method = RequestMethod.GET)
 //	public ModelAndView editUser() {
 //		ModelAndView model = new ModelAndView("UserForm");

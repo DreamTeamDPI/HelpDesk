@@ -38,10 +38,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                
-                .antMatchers("/", "/home", "/rol").permitAll()
+                .antMatchers("/", "/home", "/rol","/UserList").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
          
-                .antMatchers("/UserList").access("hasRole('ADMIN') or hasRole('USER')")
+                //.antMatchers("/UserList").access("hasRole('ADMIN') or hasRole('USER')")
                 .and().formLogin().loginPage("/login")
                 .usernameParameter("ssoId").passwordParameter("password")
                 
