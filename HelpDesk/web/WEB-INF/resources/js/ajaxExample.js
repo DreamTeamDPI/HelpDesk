@@ -5,6 +5,11 @@ function clickme(id) {
     console.log("groupId" + id);
     $('#myModal').modal('show');
 }
+function clickme2(id) {
+    delId = id;
+    console.log("groupId" + id);
+    $('#myModal_Add').modal('show');
+}
 function deleteRow(id){	
 	var row = document.getElementById(id);
 	row.parentNode.removeChild(row);
@@ -22,4 +27,3 @@ function delUser(){
 $('#myModal').modal('hide');
 deleteRow(delId);
 }
-////
