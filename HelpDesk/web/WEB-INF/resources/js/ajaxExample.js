@@ -43,6 +43,7 @@ $.fn.serializeObject = function()
 };
 ///adUSer
 function addUser() {
+      $('#myModalBox').modal('hide');
     //var formData = $("#addForm").serializeObject();
     //setTimeout(5000);
     //var form = $("#addForm").serializeArray();

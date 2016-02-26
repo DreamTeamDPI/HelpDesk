@@ -7,6 +7,7 @@ package com.common.controller;
 
 import com.common.model.Role;
 import com.common.model.User;
+import com.common.service.RoleService;
 import com.common.service.UserService;
 import java.util.Date;
 import java.util.List;
@@ -28,14 +29,17 @@ public class controllerUser {
     
     @Autowired
     UserService user;
+     @Autowired
+     RoleService role;
     @RequestMapping(value = "UserList" , method = RequestMethod.GET)
 	public ModelAndView handleRequest() throws Exception {
 		List<User> listUsers = user.getAll();
-                
+                List<Role> listRole  = role.getAll();
 		ModelAndView model = new ModelAndView("UserList");
 		model.addObject("userList", listUsers);
                 model.addObject("size",listUsers.size());
                 model.addObject("newUser",new User(2L));
+                model.addObject("roleList", listRole);
 		return model;
 	}
         
@@ -52,9 +56,10 @@ public class controllerUser {
 	}
         
         @RequestMapping(value = "UserList/add", method = RequestMethod.GET)
-        public @ResponseBody User addUser(User type){
+        public @ResponseBody User addUser(User type, String roleid){
             //user.addUser(newUser);
-            type.setRoleidRole(new Role(2L));
+            Long n = Long.parseLong(roleid);
+            type.setRoleidRole(new Role(n));
             user.addUser(type);
             //System.out.println("ok");
             return type;
