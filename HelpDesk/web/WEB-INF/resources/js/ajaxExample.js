@@ -65,10 +65,31 @@ function addUser() {
         console.log("fail");
     });
 }
-function get_params(form)
+
+
+function edit (t)
 {
-//    for (var i = 0; i < form.elements.length; i++)
-//    {
-//        alert(form.elements[i].value);
-//    }
+    $('#myModalBox').modal('show');
+     var url = "UserList/editId";
+     console.log(t);
+    $.get(url, {id: t}, function (resp) {
+      
+    })
+    .done(function (resp) {
+        console.log("success " + resp);
+        $("#firstName").val(resp.idUser);
+         $("#lastName").val(resp.firstName);
+          $("#role").val(resp.roleidRole);
+       
+    })
+    .fail(function (resp) {
+        console.log(resp);
+        console.log("fail");
+
+    });
+    
+    
+    
+    
+    
 }
