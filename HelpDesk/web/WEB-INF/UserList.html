@@ -58,17 +58,17 @@
                         <!-- Основное содержимое модального окна -->
 
                         <div class="modal-body" >
-
+                            <input type="text" id ="idUser" name="idUser" type="hidden"  /><br/>
                             <input type="text" id ="firstName" name="firstName"  placeholder="Имя"/><br/>
                             <input type="text" id ="lastName" name="lastName"  placeholder="Фамилия"/><br/>
                             <input type="text" id="login" name="login"  placeholder="Логин" /><br/>
                             <input type="text" name="password"  placeholder="Пароль" /><br/>
 
-                                        <select id ="role" name ="roleid" >
+                                        <select id ="role" name ="roleidRole" >
                                             <option 
                                                 
                                                 th:each ="role: ${roleList} " 
-                                                    th:value =" ${role.idRole}" 
+                                                    th:value =" ${role.nameRole}" 
                                                     th:text ="${role.nameRole}"
                                                     >Black</option>
              
@@ -110,7 +110,7 @@
                         <td th:text="${user.lastName}">null</td>
                         <td th:text="${user.patronomic}">null</td>
                         <td th:text="${user.login}">null</td>
-                        <td th:text="${user.roleidRole.nameRole}">null</td>
+                        <td th:text="${user.roleidRole}">null</td>
                         <td><a class="btn btn-lg btn-success" th:onclick="|edit(${user.idUser})|">Изменить</a></td>
                         <td><a class="btn btn-lg btn-success" href="#"  th:onclick="'clickme(\'' + ${user.idUser} +'\')'">Delete</a></td> 
                     </tr>

@@ -16,13 +16,14 @@ function delUser() {
     $.get(url, {id: delId}, function (resp) {
     }).done(function () {
         console.log("success" + delId);
+        deleteRow(delId);
     })
             .fail(function () {
                 console.log("fail" + delId);
             });
 
     $('#myModal').modal('hide');
-    deleteRow(delId);
+    
 }
 ////
 $.fn.serializeObject = function()
@@ -77,9 +78,10 @@ function edit (t)
     })
     .done(function (resp) {
         console.log("success " + resp);
-        $("#firstName").val(resp.idUser);
-         $("#lastName").val(resp.firstName);
-          $("#role").val(resp.roleidRole);
+        $("#idUser").val(resp.idUser);
+        $("#lastName").val(resp.lastName);
+         $("#firstName").val(resp.firstName);
+          $("#login").val(resp.roleidRole);
        
     })
     .fail(function (resp) {
@@ -87,8 +89,6 @@ function edit (t)
         console.log("fail");
 
     });
-    
-    
     
     
     

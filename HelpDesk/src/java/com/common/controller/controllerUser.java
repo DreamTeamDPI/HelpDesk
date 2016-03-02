@@ -10,6 +10,7 @@ import com.common.model.Role;
 import com.common.model.User;
 import com.common.service.RoleService;
 import com.common.service.UserService;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import jdk.nashorn.internal.runtime.regexp.joni.ast.ConsAltNode;
@@ -33,16 +34,20 @@ public class controllerUser {
     UserService user;
     @Autowired
     RoleService role;
-
+ 
     @RequestMapping(value = "UserList", method = RequestMethod.GET)
     public ModelAndView handleRequest() throws Exception {
         List<User> listUsers = user.getAll();
         List<Role> listRole = role.getAll();
+        List<ClassUser> listClassUser = new ArrayList<>();
+            for(User user: listUsers)
+                listClassUser.add(new ClassUser(user));
         ModelAndView model = new ModelAndView("UserList");
-        model.addObject("userList", listUsers);
+        model.addObject("userList", listClassUser);
         model.addObject("size", listUsers.size());
         model.addObject("newUser", new User(2L));
         model.addObject("roleList", listRole);
+        
         return model;
     }
 
@@ -61,13 +66,15 @@ public class controllerUser {
 
     @RequestMapping(value = "UserList/add", method = RequestMethod.GET)
     public @ResponseBody
-    User addUser(User type, String roleid) {
-        //user.addUser(newUser);
-        Long n = Long.parseLong(roleid);
-        type.setRoleidRole(new Role(n));
-        user.addUser(type);
-        //System.out.println("ok");
-        return type;
+    String addUser(ClassUser type) {
+       
+//        if(type.getIdUser() == -1)
+//        {
+        System.out.println(type.toString());
+            User user1 = new User(type);
+        //}
+            user.addUser(user1);
+        return "suc";
     }
 //        @RequestMapping(value = "userNew", method = RequestMethod.GET)
 //	public ModelAndView editUser() {
