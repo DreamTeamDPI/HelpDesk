@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 /**
  *
  * @author SEMEN
@@ -24,25 +25,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	@Qualifier("customUserDetailsService")
-	UserDetailsService userDetailsService;
-	
-	@Autowired
-	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
-	}
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-	  http.authorizeRequests()
-	  	.antMatchers("/", "/home","/rol").permitAll()
-	  	.antMatchers("/admin/**").access("hasRole('ADMIN')")
-	  	.antMatchers("/db/**").access("hasRole('ADMIN') or hasRole('USER')")
-                 //.antMatchers("/rol/**").access("hasRole('USER')")
-	  	.and().formLogin().loginPage("/login")
-	  	.usernameParameter("ssoId").passwordParameter("password")
-	  	.and().csrf()
-	  	.and().exceptionHandling().accessDeniedPage("/Access_Denied");
-	}
+    @Autowired
+    @Qualifier("customUserDetailsService")
+    UserDetailsService userDetailsService;
+
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+               
+                .antMatchers("/", "/home", "/rol","/UserList").permitAll()
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+         
+                //.antMatchers("/UserList").access("hasRole('ADMIN') or hasRole('USER')")
+                .and().formLogin().loginPage("/login")
+                .usernameParameter("ssoId").passwordParameter("password")
+                
+                .and().csrf()
+                .and().exceptionHandling().accessDeniedPage("/Access_Denied")
+                .and().formLogin().defaultSuccessUrl("/UserList", false);
+    }
 }

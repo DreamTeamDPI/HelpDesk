@@ -11,6 +11,7 @@ public interface UserService {
     User editUser(User user);
     List<User> getAll();
     User findByLogin(String login);
+    User findByidUser(Long idUser);
     
         
 }

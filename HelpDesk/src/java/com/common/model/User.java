@@ -87,6 +87,25 @@ public class User implements Serializable {
         this.login = login;
     }
 
+    public User(ClassUser type) {
+        if(type.getIdUser()!=null){
+            this.idUser = type.getIdUser();
+        }
+       this.firstName = type.getFirstName();
+       this.lastName = type.getLastName();
+       this.patronomic = type.getPatronomic();
+       this.password = type.getPassword();
+       this.numberPhone = type.getNumberPhone();
+       this.login = type.getLogin();
+       if (type.getRoleidRole() == "ADMIN")
+           
+       this.roleidRole = new Role(1L);
+       else
+            this.roleidRole = new Role(2L);
+    }
+
+    
+
     public Long getIdUser() {
         return idUser;
     }
