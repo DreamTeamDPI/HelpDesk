@@ -1,130 +1,142 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-    <head lang="ru">  
+<head lang="ru">
 
-        <title>Spring Framework Guru</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}" />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
-        <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-        <script th:src="@{/js/ajaxExample.js}"></script>
-        <script type="text/javascript" th:src="@{/js/serializejson.js}"></script>
-
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/ajaxExample.js}"></script>
 
 
-    </head>
+</head>
 
-    <ul class="nav nav-tabs">
-        <li ><a th:href="@{/}">Главная</a></li>
-        <li class="active"> <a th:href="@{/UserList}">Пользователей <span class="badge" th:text="${size}"> null"</span></a></li>
-        <li><a th:href="@{/answ}">Тикеты</a></li>
-        <li><a th:href="@{/logout}">Выход</a></li>
-    </ul>
-
-
-    <body>
-        <h1>Список пользователей</h1>
+<ul id="infoTab" class="nav nav-tabs">
+    <li id="firstStepInfoTab"><a th:href="@{/}">Главная</a></li>
+    <li id="secondStepInfoTab" class="active"><a th:href="@{/UserList}">Пользователей <span class="badge"
+                                                                                            th:text="${size}"> null"</span></a>
+    </li>
+    <li><a th:href="@{/answ}">Тикеты</a></li>
+    <li><a th:href="@{/logout}">Выход</a></li>
+</ul>
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Вы уверенны, что хотите удалить пользователя?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                        <button type="button" class="btn btn-primary" onclick="delUser()">Да</button>
-                    </div>
+<body>
+<h1>Список пользователей</h1>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Вы уверенны, что хотите удалить пользователя?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" onclick="delUser()">Да</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- HTML-код модального окна -->
+<div id="myModalBox" class="modal fade">
+    <div class="modal-dialog">
+        <form onsubmit="return false;" name="User" id="addForm" method="post">
+            <div class="modal-content">
+                <!-- Заголовок модального окна -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Добавление</h4>
+                </div>
+                <!-- Основное содержимое модального окна -->
+
+                <div class="modal-body">
+                    <input type="text" id="idUser" name="idUser" th:value="-1"/><br/>
+                    <input type="text" id="firstName" name="firstName" placeholder="Имя"/><br/>
+                    <input type="text" id="lastName" name="lastName" placeholder="Фамилия"/><br/>
+                    <input type="text" id="login" name="login" placeholder="Логин"/><br/>
+                    <input type="text" name="password" placeholder="Пароль"/><br/>
+
+                    <select id="role" name="roleIdRole">
+                        <option
+
+                                th:each="role: ${roleList} "
+                                th:value=" ${role.nameRole}"
+                                th:text="${role.nameRole}"
+                        >Black
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Футер модального окна -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" onclick="addUser()" class="btn btn-primary">Сохранить изменения</button>
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
+</div>
 
 
+<p sec:authorize="hasRole('ROLE_ADMIN')"><input type="button" onclick="clickme(5)" value=" click me "/></p>
+<br/>
 
-        <!-- HTML-код модального окна -->
-        <div id="myModalBox" class="modal fade">
-            <div class="modal-dialog">
-                <form onsubmit="return false;" name="User" id="addForm"  method="post">
-                    <div class="modal-content">
-                        <!-- Заголовок модального окна -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Добавление</h4>
-                        </div>
-                        <!-- Основное содержимое модального окна -->
-
-                        <div class="modal-body" >
-                            <input type="text" id ="idUser" name="idUser" type="hidden"  /><br/>
-                            <input type="text" id ="firstName" name="firstName"  placeholder="Имя"/><br/>
-                            <input type="text" id ="lastName" name="lastName"  placeholder="Фамилия"/><br/>
-                            <input type="text" id="login" name="login"  placeholder="Логин" /><br/>
-                            <input type="text" name="password"  placeholder="Пароль" /><br/>
-
-                                        <select id ="role" name ="roleidRole" >
-                                            <option 
-                                                
-                                                th:each ="role: ${roleList} " 
-                                                    th:value =" ${role.nameRole}" 
-                                                    th:text ="${role.nameRole}"
-                                                    >Black</option>
-             
-                                        </select>
-
-                        </div>
-
-                        <!-- Футер модального окна -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                            <button type="submit" onclick="addUser()" class="btn btn-primary">Сохранить изменения</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-        <p  sec:authorize="hasRole('ROLE_ADMIN')"><input  type="button" onclick="clickme(5)" value=" click me "/></p>
-        <br/>
-
-        <div class = "marh">
-
-            <table class="simple-little-table">
-                <thead>
-                    <tr>
-                        <th style="width: 100px;">Имя</th>
-                        <th style="width: 100px;">Фамилия</th>
-                        <th style="width: 100px;">Отчество</th>
-                        <th style="width: 100px;">Логин</th>
-                        <th style="width: 100px;">Роль</th>
-                        <th style="width: 100px;">Изменить/Удалить</th>
-                        <th style="width: 100px;">Изменить/Удалить</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="user : ${userList}" th:id="${user.idUser}">
-                        <td  th:text="${user.firstName}">null</td>
-                        <td th:text="${user.lastName}">null</td>
-                        <td th:text="${user.patronomic}">null</td>
-                        <td th:text="${user.login}">null</td>
-                        <td th:text="${user.roleidRole}">null</td>
-                        <td><a class="btn btn-lg btn-success" th:onclick="|edit(${user.idUser})|">Изменить</a></td>
-                        <td><a class="btn btn-lg btn-success" href="#"  th:onclick="'clickme(\'' + ${user.idUser} +'\')'">Delete</a></td> 
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        
+<select id="numRole" name="numRole">
+    <option
+            th:each="num : ${listNm} "
+            th:value="${num.idRole}"
+            th:text="${num.nameRole}"
+    >Black
+    </option>
+</select>
+<button type="submit" onclick="sort()" class="btn btn-primary">sorting</button>
+<div class="marh">
+    <table class="simple-little-table">
+        <thead>
+        <tr>
+            <th style="width: 100px;">Имя</th>
+            <th style="width: 100px;">Фамилия</th>
+            <th style="width: 100px;">Отчество</th>
+            <th style="width: 100px;">Логин</th>
+            <th style="width: 100px;">Роль</th>
+            <th style="width: 100px;">Изменить/Удалить</th>
+            <th style="width: 100px;">Изменить/Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}" th:id="${user.idUser}">
+            <td th:text="${user.firstName}">null</td>
+            <td th:text="${user.lastName}">null</td>
+            <td th:text="${user.patronomic}">null</td>
+            <td th:text="${user.login}">null</td>
+            <td th:text="${user.roleIdRole}">null</td>
+            <td><a class="btn btn-lg btn-success" th:onclick="|edit(${user.idUser})|">Изменить</a></td>
+            <td><a class="btn btn-lg btn-success" href="#" th:onclick="'clickme(\'' + ${user.idUser} +'\')'">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="bot-navigation" th:each="number : ${listNumberPage}" align="center">
+        <a th:href="@{/UserList(page=${number})}" th:text="${number}">1</a>
+</div>
 
 
-        <a  href="#myModalBox" class="btn btn-primary" data-toggle="modal">Добавить пользователя</a>
+</div>
 
-      
-        <br/>
 
-    </body>
+<a href="#myModalBox" class="btn btn-primary" data-toggle="modal">Добавить пользователя</a>
+
+
+<br/>
+
+</body>
 </html>
