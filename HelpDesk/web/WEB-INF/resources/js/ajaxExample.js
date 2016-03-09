@@ -16,18 +16,35 @@ function delUser() {
     $.get(url, {id: delId}, function (resp) {
     }).done(function () {
         console.log("success" + delId);
-            deleteRow(delId);
+        deleteRow(delId);
     })
             .fail(function () {
                 console.log("fail" + delId);
             });
 
     $('#myModal').modal('hide');
-
+    
 }
+////
+$.fn.serializeObject = function()
+{
+   var o = {};
+   var a = this.serializeArray();
+   $.each(a, function() {
+       if (o[this.name]) {
+           if (!o[this.name].push) {
+               o[this.name] = [o[this.name]];
+           }
+           o[this.name].push(this.value || '');
+       } else {
+           o[this.name] = this.value || '';
+       }
+   });
+   return o;
+};
 ///adUSer
 function addUser() {
-    $('#myModalBox').modal('hide');
+      $('#myModalBox').modal('hide');
     //var formData = $("#addForm").serializeObject();
     //setTimeout(5000);
     //var form = $("#addForm").serializeArray();
@@ -51,63 +68,28 @@ function addUser() {
 }
 
 
-function edit(t)
+function edit (t)
 {
     $('#myModalBox').modal('show');
-    var url = "UserList/editId";
-    console.log(t);
+     var url = "UserList/editId";
+     console.log(t);
     $.get(url, {id: t}, function (resp) {
+      
+    })
+    .done(function (resp) {
+        console.log("success " + resp);
+        $("#idUser").val(resp.idUser);
+        $("#lastName").val(resp.lastName);
+         $("#firstName").val(resp.firstName);
+          $("#login").val(resp.roleidRole);
+       
+    })
+    .fail(function (resp) {
+        console.log(resp);
+        console.log("fail");
 
-        })
-        .done(function (resp) {
-            console.log("success " + resp);
-            $("#idUser").val(resp.idUser);
-            $("#lastName").val(resp.lastName);
-            $("#firstName").val(resp.firstName);
-            $("#login").val(resp.roleidRole);
-
-        })
-        .fail(function (resp) {
-            console.log(resp);
-            console.log("fail");
-
-        });
+    });
     
     
     
-}
-
-function sort() {
-    var num = $("#numRole").val();
-    var url = "UserList/sort";
-    console.log(num);
-    console.log(url);
-    $.get(url, {i: num}, function (resp) {
-        })
-        .done(function (resp) {
-            var $response = $(resp);
-
-
-            var table = $response.filter('.simple-little-table');
-            var list = $response.filter('.bot-navigation');
-            var size = $response.filter("#secondStepInfoTab");
-
-            console.log(size.text());
-
-            $(".simple-little-table").remove();
-            $(".bot-navigation").remove();
-            $(".marh").append(table);
-            $(".marh").append(list);
-
-            $("#secondStepInfoTab").remove();
-            var ul = $("#firstStepInfoTab");
-
-            //  console.log(ul);
-            ul.after(size);
-
-
-        })
-        .fail(function (resp) {
-            console.log("fail");
-        });
 }
