@@ -14,12 +14,14 @@ import com.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,13 +97,14 @@ public class controllerUser {
 
     @RequestMapping(value = "UserList/add", method = RequestMethod.GET)
     public @ResponseBody
-    String addUser(ClassUser type) {
+    String addUser(@Valid ClassUser type, BindingResult result) {
+        if(result.hasErrors()) return "err";
         System.out.println(type.toString());
-        type.setRoleidRole(1);
-        User user1 = new User(type);
-        user.addUser(user1);
+//        type.setRoleidRole(1);
+//        User user1 = new User(type);
+//        user.addUser(user1);
         return "suc";
-    }
+}
 
     @RequestMapping(value = "UserList/editId", method = RequestMethod.GET)
     public

@@ -43,7 +43,7 @@ function addUser() {
     $.get(url, form, function () {
         })
         .done(function (resp) {
-            console.log("success " + resp.idUser);
+            console.log("success " + resp);
         })
         .fail(function () {
             console.log("fail");
