@@ -36,6 +36,8 @@ TD, TH {
 	box-shadow: 0 1px 2px #d1d1d1;
 }
  
+
+
 .simple-little-table th {
 	font-weight:bold;
 	padding:21px 25px 22px 25px;
@@ -131,3 +133,42 @@ TD, TH {
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
     color: #337ab7;
    }
+ 
+.align_login{margin-left:39%;}
+.imput_data
+{
+	background-color: #fff;
+	width: 40%;
+	padding: 3%;
+	margin: auto;
+	color: #000;
+	border-radius: 10px;
+}
+.text_align
+{
+	margin: 3%;
+	font-size: 1.5em;
+}
+
+.font-thin {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 200;
+}
+
+.font-semibold {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 600;
+}
+
+.font-light {
+	font-family: "Titillium Web", sans-serif;
+	font-weight: 300;
+}
+
+.breaker {
+	clear: both;
+	font-size: 1px;
+	line-height: 1px;
+	height: 1px;
+}
+

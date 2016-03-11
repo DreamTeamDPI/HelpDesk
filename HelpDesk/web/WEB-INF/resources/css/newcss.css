@@ -16,6 +16,7 @@
 	-moz-box-shadow: 0 1px 2px #d1d1d1;
 	-webkit-box-shadow: 0 1px 2px #d1d1d1;
 	box-shadow: 0 1px 2px #d1d1d1;
+        margin: 30%;
 }
  
 .simple-little-table th {
@@ -111,6 +112,8 @@ H1, H2 {
   background: maroon; /* Цвет фона таблицы */
   color: white; /* Цвет текста */
   border: 5px double #000; /* Рамка вокруг таблицы */
+   width: 80%;
+   margin: auto;
 }
 
 TD, TH {
@@ -119,5 +122,6 @@ TD, TH {
    border: 1px solid #fff; /* Рамка вокруг ячеек */
 }
 .marh{
-    margin: auto;
+    width: 70%!important;
+    margin: auto!important;
 }

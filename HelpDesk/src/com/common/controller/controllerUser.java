@@ -38,17 +38,13 @@ public class controllerUser {
     @RequestMapping(value = "UserList", method = RequestMethod.GET)
     public ModelAndView handleRequest(int page) throws Exception {
 
-        Page<User> pages = user.findAllPagesAndSort(page - 1, 2);//user.getNotAll(n,k);
+        Page<User> pages = user.findAllPages(page - 1);//user.getNotAll(n,k);
         int totalPages = pages.getTotalPages();
         int totalElements = (int) pages.getTotalElements();
         List<User> list = pages.getContent();
         List<Role> roleList = role.getAll();
         System.out.println("===========================");
-//        List<User> listByRole = user.getByRole(1);
-//        for(User usert : listByRole){
-//            System.out.println(usert.getIdUser() + "  " + usert.getFirstName() + "  " + usert.getRoleIdRole());
-//        }
-        System.out.println("===========================");
+
         ModelAndView model = new ModelAndView("UserList");
         model.addObject("userList", list);
         model.addObject("size", totalElements);

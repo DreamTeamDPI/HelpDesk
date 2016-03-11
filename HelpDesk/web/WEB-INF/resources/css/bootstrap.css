@@ -2967,7 +2967,7 @@ select[multiple].form-group-lg .form-control {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
+  margin: 3%;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
@@ -3110,8 +3110,9 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-success {
   color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  background-color: #00B5AD;
+  border-color: #00B5AD;
+  border-radius: 7px!important;
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -3120,8 +3121,8 @@ fieldset[disabled] .btn-primary.active {
 .btn-success.active,
 .open > .dropdown-toggle.btn-success {
   color: #fff;
-  background-color: #449d44;
-  border-color: #398439;
+  background-color: #009C95;
+  border-color: #009C95;
 }
 .btn-success:active,
 .btn-success.active,

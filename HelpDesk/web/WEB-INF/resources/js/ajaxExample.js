@@ -15,12 +15,12 @@ function delUser() {
     console.log("groupId" + delId + "  " + url);
     $.get(url, {id: delId}, function (resp) {
     }).done(function () {
-        console.log("success" + delId);
+            console.log("success" + delId);
             deleteRow(delId);
-    })
-            .fail(function () {
-                console.log("fail" + delId);
-            });
+        })
+        .fail(function () {
+            console.log("fail" + delId);
+        });
 
     $('#myModal').modal('hide');
 
@@ -41,13 +41,13 @@ function addUser() {
     //console.log(form.firstName);
     console.log(form);
     $.get(url, form, function () {
-    })
-    .done(function (resp) {
-        console.log("success " + resp.idUser);
-    })
-    .fail(function () {
-        console.log("fail");
-    });
+        })
+        .done(function (resp) {
+            console.log("success " + resp.idUser);
+        })
+        .fail(function () {
+            console.log("fail");
+        });
 }
 
 
@@ -72,9 +72,9 @@ function edit(t)
             console.log("fail");
 
         });
-    
-    
-    
+
+
+
 }
 
 function sort() {
