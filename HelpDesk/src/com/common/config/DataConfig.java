@@ -1,9 +1,10 @@
 package com.common.config;
 
-
+import org.flywaydb.core.Flyway;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,8 +18,21 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.common.repository")
 public class DataConfig {
-    
+
+
+//    @Bean(initMethod = "migrate")
+//    Flyway flyway() {
+//        Flyway flyway = new Flyway();
+//        flyway.setBaselineOnMigrate(true);
+//        flyway.setLocations("filesystem:/path/to/migrations/");
+//        flyway.setDataSource(dataSource());
+//        return flyway;
+//
+//    }
+
+
     @Bean
+//    @DependsOn("flyway")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
@@ -58,6 +72,13 @@ public class DataConfig {
     }
       
 }
+
+
+
+
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
