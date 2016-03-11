@@ -1,5 +1,7 @@
 package com.common.entity;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -7,8 +9,10 @@ import java.io.Serializable;
  */
 public class ClassUser implements Serializable {
 
+    @NotNull
     private int idUser;
 
+    @Size(min=10)
     private String firstName;
 
     private String lastName;
