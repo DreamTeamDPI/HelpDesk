@@ -23,7 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -45,11 +47,15 @@ public class controllerUser {
         int totalElements = (int) pages.getTotalElements();
         List<User> list = pages.getContent();
         List<Role> roleList = role.getAll();
+        Map<Integer, String> hashmap = new HashMap<Integer, String>();
+        hashmap.put(1,roleList.get(0).toString());
+        hashmap.put(2,roleList.get(1).toString());
         System.out.println("===========================");
 
         ModelAndView model = new ModelAndView("UserList");
         model.addObject("userList", list);
         model.addObject("size", totalElements);
+        model.addObject("roleCollection", hashmap);
         List<Integer> pageNumber = new ArrayList<>();
         for(int i = 1 ; i <= totalPages; i++){
             pageNumber.add(i);
