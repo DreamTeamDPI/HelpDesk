@@ -20,19 +20,9 @@ import java.util.Properties;
 public class DataConfig {
 
 
-//    @Bean(initMethod = "migrate")
-//    Flyway flyway() {
-//        Flyway flyway = new Flyway();
-//        flyway.setBaselineOnMigrate(true);
-//        flyway.setLocations("filesystem:/path/to/migrations/");
-//        flyway.setDataSource(dataSource());
-//        return flyway;
-//
-//    }
-
 
     @Bean
-//    @DependsOn("flyway")
+ //   @DependsOn("flyway")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
@@ -70,7 +60,18 @@ public class DataConfig {
         properties.put("hibernate.show_sql", "true");
         return properties;
     }
-      
+
+
+    @Bean(initMethod = "migrate")
+    public Flyway flyway() {
+        Flyway flyway = new Flyway();
+        flyway.setBaselineOnMigrate(true);
+        flyway.setLocations("com/db/migration");
+        flyway.setDataSource(dataSource());
+        return flyway;
+
+    }
+
 }
 
 
