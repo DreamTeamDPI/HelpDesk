@@ -100,9 +100,9 @@ public class controllerUser {
     String addUser(@Valid ClassUser type, BindingResult result) {
         if(result.hasErrors()) return "err";
         System.out.println(type.toString());
-//        type.setRoleidRole(1);
-//        User user1 = new User(type);
-//        user.addUser(user1);
+        type.setRoleidRole(1);
+        User user1 = new User(type);
+        user.addUser(user1);
         return "suc";
 }
 
