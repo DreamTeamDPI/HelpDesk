@@ -45,9 +45,9 @@ public class controllerUser {
         int totalElements = (int) pages.getTotalElements();
         List<User> list = pages.getContent();
         List<Role> roleList = role.getAll();
-        Map<String, String> hashmap = new HashMap<String, String>();
-        hashmap.put("1",roleList.get(0).toString());
-        hashmap.put("2",roleList.get(1).toString());
+        Map<Integer, String> hashmap = new HashMap<Integer, String>();
+        hashmap.put(1,roleList.get(0).toString());
+        hashmap.put(2,roleList.get(1).toString());
         System.out.println("===========================");
 
         ModelAndView model = new ModelAndView("UserList");
