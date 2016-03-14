@@ -39,6 +39,48 @@ public class controllerUser {
     @Autowired
     RoleService role;
 
+    @RequestMapping(value = "UserList/ex", method = RequestMethod.GET)
+    public ModelAndView ex(@RequestParam Map<String,String> allRequestParams) throws Exception {
+        ModelAndView model = new ModelAndView("UserList");
+
+        int page = 0;
+        String name = "";
+
+        if(allRequestParams.containsKey("page"))page = Integer.parseInt(allRequestParams.get("page"));
+        if(allRequestParams.containsKey("name")){
+            name = allRequestParams.get("name");
+        }
+        Page<User> pages;
+        if(!name.isEmpty()){
+            pages= user.findAllPagesAndSort(page, name);
+            System.out.println("herer");
+        }
+        else  {
+            pages=user.findAllPages(page);//findAllPagesAndSort(page, 1);
+            System.out.println("ret" + pages.getContent().size());
+        }
+
+
+
+        List<User> list = pages.getContent();
+
+
+        List<Integer> pageNumber = new ArrayList<>();
+        for (int j = 1; j <= pages.getTotalPages(); j++) {
+            pageNumber.add(j);
+        }
+
+
+        model.addObject("listNumberPage", pageNumber);
+        model.addObject("userList", list);
+        model.addObject("size", pages.getTotalElements());
+
+
+        return model;
+
+    }
+
+
     @RequestMapping(value = "UserList", method = RequestMethod.GET)
     public ModelAndView handleRequest(int page) throws Exception {
 

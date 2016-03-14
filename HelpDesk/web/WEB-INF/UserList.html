@@ -100,7 +100,12 @@
 </select>
 <button type="submit" onclick="sort()" class="btn btn-primary">sorting</button>
 <a href="UserList?page=1" class="btn btn-primary" >Сбросить</a>
+
+<input type="text" th:id="${FindQuery}" placeholder="Поиск"/><br/>
+<a href="UserList?page=1" class="btn btn-primary" >Go</a>
 <div class="marh">
+
+
     <table class="simple-little-table">
         <thead>
         <tr>
@@ -127,7 +132,7 @@
         </tbody>
     </table>
     <div class="bot-navigation" th:each="number : ${listNumberPage}" align="center">
-        <a th:href="@{/UserList(page=${number})}" th:text="${number}">1</a>
+        <a th:href="@{/UserList(page=${number},)}" th:text="${number}">1</a>
 </div>
 
 

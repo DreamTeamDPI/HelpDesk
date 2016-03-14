@@ -22,5 +22,6 @@ public interface UserService {
     List<User> getByRole(Integer i);
 
     Page<User> findAllPagesAndSort(int n, int i);
+    Page<User> findAllPagesAndSort(int n, String name);
 
 }

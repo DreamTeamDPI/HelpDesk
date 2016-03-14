@@ -84,4 +84,16 @@ public class UserServiceImpl implements UserService {
         return pages;
     }
 
+    @Override
+    public Page<User> findAllPagesAndSort(int n, String name) {
+        Pageable pgbl = new PageRequest(n, 10, new Sort(new Order(Direction.ASC, "firstName", Sort.NullHandling.NULLS_LAST),
+                new Order(Direction.ASC, "lastName") {
+                }));
+
+        Page<User> pages = userRepository.findAll(findAllByName(name), pgbl);
+
+
+        return pages;
+    }
+
 }
