@@ -49,4 +49,14 @@ public class UserSpecs {
       }
     };
   }
+
+
+  public static Specification<User> findUser(String findQuery) {
+    return new Specification<User>() {
+      @Override
+      public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+        return builder.equal(root.get("firstName"), findQuery);//lessThan(root.get("roleIdRole"),i);//like(root.get("roleIdRole"),String.valueOf(i));
+      }
+    };
+  }
 }

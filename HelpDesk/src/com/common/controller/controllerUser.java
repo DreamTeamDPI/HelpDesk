@@ -95,6 +95,22 @@ public class controllerUser {
         return model;
     }
 
+    @RequestMapping(value = "UserList/find", method = RequestMethod.GET)
+    public ModelAndView findUser(String findQuery) {
+
+        ModelAndView model = new ModelAndView("UserList");
+        List<User> list =  user.getFindUser(findQuery);//user.getNotAll(n,k);
+
+        for (User user :list
+                ) {
+            System.out.println(user.toString());
+        }
+
+        model.addObject("userList", list);
+
+        return model;
+    }
+
     @RequestMapping(value = "UserList/del", method = RequestMethod.GET)
     public String deleteUser(int id) {
         user.delete(id);

@@ -74,6 +74,8 @@
 
                     </select>
 
+
+
                 </div>
 
                 <!-- Футер модального окна -->
@@ -98,7 +100,11 @@
     >Black
     </option>
 </select>
+<input type="text" id="findView" name="findView" placeholder="Поиск"/>
 <button type="submit" onclick="sort()" class="btn btn-primary">sorting</button>
+
+<button type="submit" onclick="findByName()" class="btn btn-primary">find</button>
+
 <a href="UserList?page=1" class="btn btn-primary" >Сбросить</a>
 <div class="marh">
     <table class="simple-little-table">
@@ -120,6 +126,8 @@
             <td th:text="${user.patronomic}">null</td>
             <td th:text="${user.login}">null</td>
             <td th:text="${user.roleIdRole}">null</td>
+
+            <td th:text="${roleColetion}">null</td>
             <td><a class="btn btn-lg btn-success" th:onclick="|edit(${user.idUser})|">Изменить</a></td>
             <td><a class="btn btn-lg btn-success" href="#" th:onclick="'clickme(\'' + ${user.idUser} +'\')'">Delete</a>
             </td>

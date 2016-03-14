@@ -111,3 +111,14 @@ function sort() {
             console.log("fail");
         });
 }
+
+
+function findByName() {
+    var num = $("#findView").val();
+    var url = "../UserList/find";
+    console.log(num);
+    console.log(url);
+
+    url+= "?findQuery="+num;
+    document.location.href = url
+}

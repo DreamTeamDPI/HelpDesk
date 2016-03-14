@@ -12,6 +12,22 @@ import javax.persistence.Id;
 public class User {
 
     private int idUser;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", patronomic='" + patronomic + '\'' +
+                ", password='" + password + '\'' +
+                ", login='" + login + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", roleIdRole=" + roleIdRole +
+                '}';
+    }
+
     private String firstName;
     private String lastName;
     private String patronomic;
