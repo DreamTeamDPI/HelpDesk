@@ -51,8 +51,7 @@ function addUser() {
 }
 
 
-function edit(t)
-{
+function edit(t) {
     $('#myModalBox').modal('show');
     var url = "UserList/editId";
     console.log(t);
@@ -110,4 +109,13 @@ function sort() {
         .fail(function (resp) {
             console.log("fail");
         });
+}
+
+function findAllName(href){
+
+    console.log(href);
+    var url = "";
+    var name = $("#findName").val();
+    document.location.href = "http://localhost:8080/UserList/ex?page=1&name=" + name;
+
 }

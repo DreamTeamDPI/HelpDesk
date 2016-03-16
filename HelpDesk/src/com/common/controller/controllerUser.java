@@ -22,10 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -41,41 +38,47 @@ public class controllerUser {
 
     @RequestMapping(value = "UserList/ex", method = RequestMethod.GET)
     public ModelAndView ex(@RequestParam Map<String,String> allRequestParams) throws Exception {
-        ModelAndView model = new ModelAndView("UserList");
 
-        int page = 0;
+
+        ModelAndView model = new ModelAndView("UserListSorting");
+        Map<Integer,String> pnn = new HashMap<>();
+        List<Integer> pageNumber = new ArrayList<>();
+        Page<User> pages;
+        int page = 1;
         String name = "";
 
         if(allRequestParams.containsKey("page"))page = Integer.parseInt(allRequestParams.get("page"));
         if(allRequestParams.containsKey("name")){
-            name = allRequestParams.get("name");
-        }
-        Page<User> pages;
+            name = allRequestParams.get("name");}
+
+        page--;
         if(!name.isEmpty()){
             pages= user.findAllPagesAndSort(page, name);
-            System.out.println("herer");
-        }
-        else  {
+
+            for (int j = 1; j <= pages.getTotalPages(); j++) {
+                pageNumber.add(j);
+                String s = "page=" + String.valueOf(j) + "&name=" + name;
+                pnn.put(j,s);
+
+            }
+
+        } else  {
             pages=user.findAllPages(page);//findAllPagesAndSort(page, 1);
             System.out.println("ret" + pages.getContent().size());
+
+            for (int j = 1; j <= pages.getTotalPages(); j++) {
+                pageNumber.add(j);
+                String s = "page=" + String.valueOf(j);
+                pnn.put(j,s);
+
+            }
         }
-
-
 
         List<User> list = pages.getContent();
 
 
-        List<Integer> pageNumber = new ArrayList<>();
-        for (int j = 1; j <= pages.getTotalPages(); j++) {
-            pageNumber.add(j);
-        }
-
-
-        model.addObject("listNumberPage", pageNumber);
+        model.addObject("listNumberPage", pnn);
         model.addObject("userList", list);
-        model.addObject("size", pages.getTotalElements());
-
-
         return model;
 
     }
@@ -99,6 +102,9 @@ public class controllerUser {
         model.addObject("size", totalElements);
         model.addObject("roleCollection", hashmap);
         List<Integer> pageNumber = new ArrayList<>();
+
+
+
         for(int i = 1 ; i <= totalPages; i++){
             pageNumber.add(i);
         }
