@@ -2,6 +2,7 @@ package com.common.service.impl;
 
 
 import com.common.entity.User;
+import com.common.helper.sortAndPage;
 import com.common.repository.UserRepository;
 import com.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +95,18 @@ public class UserServiceImpl implements UserService {
 
 
         return pages;
+    }
+
+    @Override
+    public Page<User> findAllPages(sortAndPage sAP) {
+        Pageable pgbl = new PageRequest(sAP.getPage(), 10, new Sort(new Order(Direction.ASC, "firstName", Sort.NullHandling.NULLS_LAST),
+                new Order(Direction.ASC, "lastName") {
+                }));
+        if(!sAP.getName().isEmpty()){
+            return userRepository.findAll(findAllByName(sAP.getName()), pgbl);
+        }else{
+            return userRepository.findAll(pgbl);
+        }
     }
 
 }

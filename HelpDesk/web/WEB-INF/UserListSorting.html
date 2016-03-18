@@ -25,7 +25,7 @@
 <input type="text" id="findName" placeholder="Поиск"/><br/>
 <button type="submit" onclick="findAllName('/UserList/ex?page=1')" class="btn btn-primary">go</button>
 
-<form onsubmit="return false;" name="User" id="addForm" method="post">
+<form th:action="@{/UserList/ex}" name="sortAndPage" id="sortForm" method="get">
     <div class="modal-content">
         <!-- Заголовок модального окна -->
         <div class="modal-header">
@@ -35,29 +35,15 @@
         <!-- Основное содержимое модального окна -->
 
         <div class="modal-body">
-            <input type="text" id="idUser" name="idUser" th:value="-1"/><br/>
-            <input type="text" id="firstName" name="firstName" placeholder="Имя"/><br/>
+
+            <input type="text" id="page" name="page" value="1" placeholder="Page"/><br/>
+            <input type="text" id="name" name="name" placeholder="Имя"/><br/>
+            <input type="submit"  value="sub"/><br/>
+            <!--
             <input type="text" id="lastName" name="lastName" placeholder="Фамилия"/><br/>
             <input type="text" id="login" name="login" placeholder="Логин"/><br/>
-            <input type="text" name="password" placeholder="Пароль"/><br/>
+            <input type="text" name="password" placeholder="Пароль"/><br/>-->
 
-            <select id="role" name="roleIdRole">
-                <option
-
-                        th:each="role: ${roleList} "
-                        th:value=" ${role.nameRole}"
-                        th:text="${role.nameRole}"
-                >Black
-                </option>
-
-            </select>
-
-        </div>
-
-        <!-- Футер модального окна -->
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <button type="submit" onclick="addUser()" class="btn btn-primary">Сохранить изменения</button>
         </div>
     </div>
 </form>

@@ -2,6 +2,7 @@ package com.common.service;
 
 
 import com.common.entity.User;
+import com.common.helper.sortAndPage;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -24,4 +25,5 @@ public interface UserService {
     Page<User> findAllPagesAndSort(int n, int i);
     Page<User> findAllPagesAndSort(int n, String name);
 
+    Page<User> findAllPages(sortAndPage sAP);
 }
