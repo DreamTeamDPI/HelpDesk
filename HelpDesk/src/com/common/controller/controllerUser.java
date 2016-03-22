@@ -42,20 +42,13 @@ public class controllerUser {
     @RequestMapping(value = "UserList/ex", method = RequestMethod.GET)
     public ModelAndView ex(sortAndPage sAP) throws Exception {
 
-        if (sAP.getPage() == 0) sAP = new sortAndPage(1);
-
         ModelAndView model = new ModelAndView("UserListSorting");
         Map<Integer, String> pnn = new HashMap<>();
         List<Integer> pageNumber = new ArrayList<>();
         Page<User> pages;
-        int page = 1;
-        String name = "sem";
 
         System.out.println(sAP);
         sAP.setPage(sAP.getPage() - 1);
-        // if(allRequestParams.containsKey("page"))page = Integer.parseInt(allRequestParams.get("page"));
-        // if(allRequestParams.containsKey("name")){
-        //    name = allRequestParams.get("name");}
 
         pages = user.findAllPages(sAP);
 
@@ -69,8 +62,21 @@ public class controllerUser {
 
         List<User> list = pages.getContent();
 
+        sAP.setPage(sAP.getPage() + 1);
+        int current = sAP.getPage();
+        int begin = Math.max(1, current - 2);
+        int end = Math.min(begin + 4, pages.getTotalPages());
 
-        model.addObject("listNumberPage", pnn);
+        model.addObject("firstPage",1);
+        model.addObject("lastPage",pages.getTotalPages());
+
+        model.addObject("beginIndex", begin);
+        model.addObject("endIndex", end);
+        model.addObject("currentIndex", current);
+
+
+
+        model.addObject("sortAndPage",sAP);
         model.addObject("userList", list);
         return model;
 

@@ -11,6 +11,8 @@ public class sortAndPage implements Serializable {
     private String name;
 
     public sortAndPage() {
+        page = 1;
+        name = "";
     }
 
     public sortAndPage(int page, String name) {

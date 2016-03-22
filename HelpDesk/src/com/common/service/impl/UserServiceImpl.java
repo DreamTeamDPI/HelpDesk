@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
                 }));
         Page<User> page = userRepository.findAll(pgbl);
         return page;
-        // userRepository.findAll(where(nameLikeSem()).and(hasSecondName()));
+        //userRepository.findAll(where(nameLikeSem()).and(hasSecondName()));
     }
 
     @Override
@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> findAllPages(sortAndPage sAP) {
-        Pageable pgbl = new PageRequest(sAP.getPage(), 10, new Sort(new Order(Direction.ASC, "firstName", Sort.NullHandling.NULLS_LAST),
+        Pageable pgbl = new PageRequest(sAP.getPage(), 3, new Sort(new Order(Direction.ASC, "firstName", Sort.NullHandling.NULLS_LAST),
                 new Order(Direction.ASC, "lastName") {
                 }));
         if(!sAP.getName().isEmpty()){
