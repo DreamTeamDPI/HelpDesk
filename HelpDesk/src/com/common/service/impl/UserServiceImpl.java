@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
         Page<User> pages = userRepository.findAll(findAllByName(name), pgbl);
 
 
-        return pages;x
+        return pages;
     }
 
     @Override
