@@ -1,4 +1,3 @@
-
 //Delete Row in UserList
 var delId;
 function clickme(id) {
@@ -73,7 +72,6 @@ function edit(t) {
         });
 
 
-
 }
 
 function sort() {
@@ -111,7 +109,7 @@ function sort() {
         });
 }
 
-function findAllName(href){
+function findAllName(href) {
 
     console.log(href);
     var url = "";
@@ -119,3 +117,17 @@ function findAllName(href){
     document.location.href = "http://localhost:8080/UserList/ex?page=1&name=" + name;
 
 }
+
+window.onload = function () {
+
+    $('table th').click(function () {
+        var name = $(this).attr("name");
+        $('#sortName').val(name);
+        $('#sortForm').submit();
+    });
+}
+
+
+/*$(".simple-little-table").onclick(function () {
+ alert("TD на который вы нажали содержит '"+/!*$(this).text()+*!/"'");
+ });*/

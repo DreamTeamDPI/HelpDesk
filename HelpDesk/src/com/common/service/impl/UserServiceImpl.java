@@ -94,17 +94,19 @@ public class UserServiceImpl implements UserService {
         Page<User> pages = userRepository.findAll(findAllByName(name), pgbl);
 
 
-        return pages;
+        return pages;x
     }
 
     @Override
     public Page<User> findAllPages(sortAndPage sAP) {
-        Pageable pgbl = new PageRequest(sAP.getPage(), 3, new Sort(new Order(Direction.ASC, "firstName", Sort.NullHandling.NULLS_LAST),
-                new Order(Direction.ASC, "lastName") {
-                }));
-        if(!sAP.getName().isEmpty()){
+        Pageable pgbl;
+        if (!sAP.getSortName().isEmpty())
+            pgbl = new PageRequest(sAP.getPage(), 7, new Sort(new Order(Direction.ASC, sAP.getSortName(), Sort.NullHandling.NULLS_LAST)));
+        else
+            pgbl = new PageRequest(sAP.getPage(), 7);
+        if (!sAP.getName().isEmpty()) {
             return userRepository.findAll(findAllByName(sAP.getName()), pgbl);
-        }else{
+        } else {
             return userRepository.findAll(pgbl);
         }
     }

@@ -38,7 +38,8 @@
 
             <input type="text" th:field="*{page}" placeholder="Page"/><br/>
             <input type="text" th:field="*{name}" placeholder="Имя"/><br/>
-            <input type="submit"  value="sub"/><br/>
+            <input type="text" id = "sortName" th:field="*{sortName}" placeholder="sortName"/><br/>
+            <input type="submit" id="submitForm" value="sub"/><br/>
             <!--
             <input type="text" id="lastName" name="lastName" placeholder="Фамилия"/><br/>
             <input type="text" id="login" name="login" placeholder="Логин"/><br/>
@@ -53,11 +54,11 @@
     <table class="simple-little-table">
         <thead>
         <tr>
-            <th style="width: 100px;">Имя</th>
-            <th style="width: 100px;">Фамилия</th>
-            <th style="width: 100px;">Отчество</th>
-            <th style="width: 100px;">Логин</th>
-            <th style="width: 100px;">Роль</th>
+            <th id ="name" name="firstName" style="width: 100px;">Имя</th>
+            <th id ="surname" name="lastName" style="width: 100px;">Фамилия</th>
+            <th id ="patronimic" name="patronomic" style="width: 100px;">Отчество</th>
+            <th id ="login" name = "login" style="width: 100px;">Логин</th>
+            <th id ="role" th:name="Role_idRole" style="width: 100px;">Роль</th>
         </tr>
         </thead>
         <tbody>
