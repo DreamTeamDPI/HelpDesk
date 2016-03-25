@@ -119,6 +119,12 @@
             <input type="text" th:field="*{name}" placeholder="Имя"/>
             <input type="submit" id="submitForm" value="Поиск" class="btn btn-default navbar-btn"/><br/>
 
+            <input type="hidden" name="page" id="page"  placeholder="Page" value="1"/><br/>
+            <input type="text" th:field="*{name}" placeholder="Имя"/><br/>
+            <input type="submit" value="Поиск"/><br/>
+            <input type="reset" value="Очистить"/>
+            <input type="submit" onclick="" value="return" />
+        </div>
     </div>
 </form>
 
@@ -132,7 +138,10 @@
             <th data-type="string" style="width: 100px;">Фамилия</th>
             <th data-type="string" style="width: 100px;">Отчество</th>
             <th data-type="string" style="width: 100px;">Логин</th>
+            <th data-type="number" style="width: 100px;">Роль</th>
             <th data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
+            <th data-type="" style="width: 100px;">Удалить</th>
+
         </tr>
         </thead>
         <tbody>

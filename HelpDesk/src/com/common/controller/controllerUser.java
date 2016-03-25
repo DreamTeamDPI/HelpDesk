@@ -11,13 +11,13 @@ import com.common.entity.User;
 import com.common.helper.sortAndPage;
 import com.common.service.RoleService;
 import com.common.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +33,9 @@ import java.util.Map;
  */
 @Controller
 public class controllerUser {
-    
+
+    private static final Logger logger = Logger.getLogger(controllerUser.class);
+
     @Autowired
     UserService user;
     @Autowired
@@ -114,15 +116,20 @@ public class controllerUser {
 
         int step = 1;
         int current = sAP.getPage();
+        int max = pages.getTotalPages();
+        if(pages.getTotalPages()==0){
+            current = 1;
+            max+=1;
+        }
 
         if(current == 1)step = 2;
         if(current == pages.getTotalPages())step = 2;
 
         int begin = Math.max(1, current - step);
-        int end = Math.min(current + step, pages.getTotalPages());
+        int end = Math.min(current + step, max);
 
         model.addObject("firstPage",1);
-        model.addObject("lastPage",pages.getTotalPages());
+        model.addObject("lastPage",max);
 
         model.addObject("beginIndex", begin);
         model.addObject("endIndex", end);
@@ -132,16 +139,11 @@ public class controllerUser {
 
         model.addObject("size", pages.getTotalElements());
 
+
+        logger.info("Ok/ it's worked");
+
         return model;
 
-    }
-
-    @RequestMapping(value = "UserList/time", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    User getTime(@RequestParam String name) {
-        //String result = "Time for " + name + " is " + new Date().toString();
-        return new User();//result;//user.findByLogin("SemmEs");
     }
 
     @RequestMapping(value = "UserList/sort", method = RequestMethod.GET)
@@ -166,8 +168,7 @@ public class controllerUser {
     }
 
     @RequestMapping(value = "UserList/add", method = RequestMethod.GET)
-    public
-    @ResponseBody
+    public @ResponseBody
     String addUser(@Valid ClassUser type, BindingResult result) {
         if (result.hasErrors()) return "err";
         System.out.println(type.toString());
@@ -177,14 +178,11 @@ public class controllerUser {
         return "suc";
     }
 
-    @RequestMapping(value = "UserList/editId", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    User editUser(int id) {
-
+    //ошибка на будущее может быть в передачи User, а не ClassUser
+    @RequestMapping(value = "UserList/getUserById", method = RequestMethod.GET)
+    public @ResponseBody
+    User getUserById(int id) {
         User listUsers = user.findByidUser(id);
-
-
         return listUsers;
     }
 

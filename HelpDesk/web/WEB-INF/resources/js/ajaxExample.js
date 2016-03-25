@@ -52,7 +52,7 @@ function addUser() {
 
 function edit(t) {
     $('#myModalBox').modal('show');
-    var url = "UserList/editId";
+    var url = "UserList/getUserById";
     console.log(t);
     $.get(url, {id: t}, function (resp) {
 
@@ -137,13 +137,11 @@ window.onload = function () {
 
         switch (attribute) {
             case "string":
-                console.log("str");
                 compare = function (rowA, rowB) {
                     return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 * direct : -1 * direct;
                 };
                 break;
             case "number":
-                console.log("num");
                 compare = function (rowA, rowB) {
                     return rowA.cells[colNum].innerHTML * direct - rowB.cells[colNum].innerHTML * direct;
                 };
