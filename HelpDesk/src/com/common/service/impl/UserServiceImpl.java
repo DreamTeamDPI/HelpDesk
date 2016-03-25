@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
     public Page<User> findAllPages(sortAndPage sAP) {
         Pageable pgbl;
         if (!sAP.getSortName().isEmpty())
-            pgbl = new PageRequest(sAP.getPage(), 7, new Sort(new Order(Direction.ASC, sAP.getSortName(), Sort.NullHandling.NULLS_LAST)));
+            pgbl = new PageRequest(sAP.getPage(), 7/*, new Sort(new Order(Direction.ASC, sAP.getSortName(), Sort.NullHandling.NULLS_LAST))*/);
         else
             pgbl = new PageRequest(sAP.getPage(), 7);
         if (!sAP.getName().isEmpty()) {

@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/forSortOfTable.css}"/>
     <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/ajaxExample.js}"></script>
@@ -14,51 +15,52 @@
 
 </head>
 
-
+<ul id="infoTab" class="nav nav-tabs">
+    <li id="firstStepInfoTab"><a th:href="@{/}">Главная</a></li>
+    <li id="secondStepInfoTab" class="active"><a th:href="@{/UserList}">Пользователей <span class="badge"
+                                                                                            th:text="${size}"> null"</span></a>
+    </li>
+    <li><a th:href="@{/answ}">Тикеты</a></li>
+    <li><a th:href="@{/logout}">Выход</a></li>
+</ul>
 <body>
+
 <h1>Список пользователей</h1>
 
-<button type="submit" onclick="sort()" class="btn btn-primary">sorting</button>
+<!--<button type="submit" onclick="sort()" class="btn btn-primary">sorting</button>
 <a th:href="@{'/UserList/ex?page=1'}" class="btn btn-primary">Сбросить</a>
 
 
 <input type="text" id="findName" placeholder="Поиск"/><br/>
-<button type="submit" onclick="findAllName('/UserList/ex?page=1')" class="btn btn-primary">go</button>
+<button type="submit" onclick="findAllName('/UserList/ex?page=1')" class="btn btn-primary">go</button>-->
 
 <form th:action="@{/UserList/ex}" name="sortAndPage" th:object="${sortAndPage}" id="sortForm" method="get">
     <div class="modal-content">
         <!-- Заголовок модального окна -->
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Добавление</h4>
+            <h4 class="modal-title">Поиск</h4>
         </div>
         <!-- Основное содержимое модального окна -->
 
         <div class="modal-body">
 
-            <input type="text" th:field="*{page}" placeholder="Page"/><br/>
+            <input type="hidden" th:field="*{page}" placeholder="Page"/><br/>
             <input type="text" th:field="*{name}" placeholder="Имя"/><br/>
-            <input type="text" id = "sortName" th:field="*{sortName}" placeholder="sortName"/><br/>
             <input type="submit" id="submitForm" value="sub"/><br/>
-            <!--
-            <input type="text" id="lastName" name="lastName" placeholder="Фамилия"/><br/>
-            <input type="text" id="login" name="login" placeholder="Логин"/><br/>
-            <input type="text" name="password" placeholder="Пароль"/><br/>-->
-
         </div>
     </div>
 </form>
 
-
 <div class="marh">
-    <table class="simple-little-table">
+    <table id = "tableForSort" class="simple-little-table">
         <thead>
         <tr>
-            <th id ="name" name="firstName" style="width: 100px;">Имя</th>
-            <th id ="surname" name="lastName" style="width: 100px;">Фамилия</th>
-            <th id ="patronimic" name="patronomic" style="width: 100px;">Отчество</th>
-            <th id ="login" name = "login" style="width: 100px;">Логин</th>
-            <th id ="role" th:name="Role_idRole" style="width: 100px;">Роль</th>
+            <th id ="name" data-type="string"  style="width: 100px;">Имя</th>
+            <th id ="surname" data-type="string"  style="width: 100px;">Фамилия</th>
+            <th id ="patronimic" data-type="string"  style="width: 100px;">Отчество</th>
+            <th id ="login" data-type="string" style="width: 100px;">Логин</th>
+            <th id ="role" data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
         </tr>
         </thead>
         <tbody>
@@ -68,19 +70,20 @@
             <td th:text="${user.patronomic}">null</td>
             <td th:text="${user.login}">null</td>
             <td th:text="${user.roleIdRole}">null</td>
+            <td><a class="btn btn-lg btn-success" th:onclick="|edit(${user.idUser})|">Изменить</a></td>
+            <td><a class="btn btn-lg btn-success" href="#" th:onclick="'clickme(\'' + ${user.idUser} +'\')'">Delete</a></td>
         </tr>
         </tbody>
-    </table>
 
+    </table>
+    <div>
+        <a th:href="@{'/UserList/ex?' + ${sortAndPage.createHref(firstPage)}}" text="first">first</a>
+        <a th:each="i : ${#numbers.sequence( beginIndex, endIndex)}" th:href="@{'/UserList/ex?' + ${sortAndPage.createHref(i)}}" th:text="${i}">1</a>
+        <a th:href="@{'/UserList/ex?' + ${sortAndPage.createHref(lastPage)}}" text="last">last</a>
+    </div>
 <!--    <div class="bot-navigation" th:each="number : ${listNumberPage}" align="center">
         <a th:href="@{'/UserList/ex?' + ${number.value}}" th:text="${sortAndPage.createHref(1)}">1</a>
     </div>-->
-
-    <a th:href="@{'/UserList/ex?' + ${sortAndPage.createHref(firstPage)}}" text="first">first</a>
-    <div class="bot-navigation" th:each="i : ${#numbers.sequence( beginIndex, endIndex)}" align="center">
-        <a th:href="@{'/UserList/ex?' + ${sortAndPage.createHref(i)}}" th:text="${i}">1</a>
-    </div>
-    <a th:href="@{'/UserList/ex?' + ${sortAndPage.createHref(lastPage)}}" text="last">last</a>
 </div>
 
 </body>

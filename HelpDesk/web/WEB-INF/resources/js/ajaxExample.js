@@ -120,14 +120,73 @@ function findAllName(href) {
 
 window.onload = function () {
 
-    $('table th').click(function () {
-        var name = $(this).attr("name");
-        $('#sortName').val(name);
-        $('#sortForm').submit();
-    });
-}
+    var table = document.getElementById('tableForSort');
+    var numColOfSort = 1;
+    var directOfSort = 1;
+    var lastEl;
+
+    function sortTable(colNum, attribute, direct) {
+        var tbody = table.getElementsByTagName('tbody')[0];
+        //console.log(tbody);
+        //console.log(tbody.rows);
+        var rowsArray = [].slice.call(tbody.rows);
+        var compare;
 
 
-/*$(".simple-little-table").onclick(function () {
- alert("TD на который вы нажали содержит '"+/!*$(this).text()+*!/"'");
- });*/
+        console.log(attribute);
+
+        switch (attribute) {
+            case "string":
+                console.log("str");
+                compare = function (rowA, rowB) {
+                    return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 * direct : -1 * direct;
+                };
+                break;
+            case "number":
+                console.log("num");
+                compare = function (rowA, rowB) {
+                    return rowA.cells[colNum].innerHTML * direct - rowB.cells[colNum].innerHTML * direct;
+                };
+                break;
+        }
+
+
+        rowsArray.sort(compare);
+
+
+        table.removeChild(tbody);
+
+        for (var i = 0; i < rowsArray.length; i++)
+            tbody.appendChild(rowsArray[i])
+
+        table.appendChild(tbody);
+
+
+    }
+
+    table.onclick = function (e) {
+        console.log("click");
+        if (e.target.tagName != 'TH')return;
+
+        console.log(e.target);
+
+
+
+        if (e.target.cellIndex != numColOfSort) {
+            numColOfSort = e.target.cellIndex;
+            directOfSort = 1;
+            if(lastEl!=null)lastEl.innerHTML = lastEl.textContent.split(" ")[0];
+            e.target.innerHTML = e.target.textContent.split(" ")[0] + " ↑";
+            lastEl = e.target;
+        } else {
+            directOfSort *= -1;
+            if (directOfSort == 1)e.target.innerHTML = e.target.textContent.split(" ")[0] + " ↑";
+            else e.target.innerHTML = e.target.textContent.split(" ")[0] + " ↓";
+
+        }
+
+
+        sortTable(e.target.cellIndex, e.target.getAttribute('data-type'), directOfSort);
+    };
+
+};

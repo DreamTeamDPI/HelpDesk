@@ -61,20 +61,24 @@ public class controllerUser {
         }
 
         List<User> list = pages.getContent();
-
         sAP.setPage(sAP.getPage() + 1);
+
+
+
+        int step = 1;
         int current = sAP.getPage();
-        int begin = Math.max(1, current - 2);
-        int end = Math.min(begin + 4, pages.getTotalPages());
+
+        if(current == 1)step = 2;
+        if(current == pages.getTotalPages())step = 2;
+
+        int begin = Math.max(1, current - step);
+        int end = Math.min(current + step, pages.getTotalPages());
 
         model.addObject("firstPage",1);
         model.addObject("lastPage",pages.getTotalPages());
 
         model.addObject("beginIndex", begin);
         model.addObject("endIndex", end);
-        model.addObject("currentIndex", current);
-
-
 
         model.addObject("sortAndPage",sAP);
         model.addObject("userList", list);
