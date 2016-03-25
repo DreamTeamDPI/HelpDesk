@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
  * @author SEMEN
  */
 @Controller
-public class controllerDepart {
+public class ControllerDepart {
     
 //    @Autowired
 //    UserService dep;

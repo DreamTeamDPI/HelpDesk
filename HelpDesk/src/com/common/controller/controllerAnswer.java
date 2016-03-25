@@ -21,7 +21,7 @@ import java.util.List;
  * @author SEMEN
  *///
 @Controller
-public class controllerAnswer {
+public class ControllerAnswer {
 
     @Autowired
     private AnswerService answService;

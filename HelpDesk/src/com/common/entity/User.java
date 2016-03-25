@@ -161,4 +161,19 @@ public class User {
         result = 31 * result + roleIdRole;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", patronomic='" + patronomic + '\'' +
+                ", password='" + password + '\'' +
+                ", login='" + login + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", roleIdRole=" + roleIdRole +
+                '}';
+    }
 }

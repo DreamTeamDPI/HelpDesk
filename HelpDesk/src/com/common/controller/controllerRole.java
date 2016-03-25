@@ -21,7 +21,7 @@ import java.util.List;
  * @author SEMEN
  */
 @Controller
-public class controllerRole {
+public class ControllerRole {
     
     @Autowired
 	RoleService role;
