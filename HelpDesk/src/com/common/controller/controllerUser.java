@@ -35,6 +35,8 @@ import java.util.Map;
 public class controllerUser {
 
     private static final Logger logger = Logger.getLogger(controllerUser.class);
+    private static final Logger logger1 = Logger.getLogger("APP");
+    private static final Logger logger2 = Logger.getLogger("EDITUSER");
 
     @Autowired
     UserService user;
@@ -142,6 +144,7 @@ public class controllerUser {
 
         logger.info("Ok/ it's worked");
 
+
         return model;
 
     }
@@ -163,6 +166,7 @@ public class controllerUser {
 
     @RequestMapping(value = "UserList/del", method = RequestMethod.GET)
     public String deleteUser(int id) {
+        logger1.info("Был удален пользователь:" + user.findByidUser(id).toString());
         user.delete(id);
         return "hi";
     }
@@ -175,6 +179,8 @@ public class controllerUser {
         type.setRoleidRole(1);
         User user1 = new User(type);
         user.addUser(user1);
+        logger2.info("Выполнялась работа с пользователем:" + user1.toString() );
+
         return "suc";
     }
 
