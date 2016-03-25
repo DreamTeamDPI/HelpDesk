@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="ru">
 
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/RoleList.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/forSortOfTable.css}"/>
+
     <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/ajaxExample.js}"></script>
@@ -15,8 +18,7 @@
 
 <ul id="infoTab" class="nav nav-tabs">
     <li id="firstStepInfoTab"><a th:href="@{/}">Главная</a></li>
-    <li id="secondStepInfoTab" class="active"><a th:href="@{/UserList}">Пользователей <span class="badge"
-                                                                                            th:text="${size}"> null"</span></a>
+    <li id="secondStepInfoTab" class="active"><a th:href="@{/UserList}">Пользователей <span class="badge" th:text="${size}"> null"</span></a>
     </li>
     <li><a th:href="@{/answ}">Тикеты</a></li>
     <li><a th:href="@{/logout}">Выход</a></li>
@@ -89,7 +91,7 @@
 
 <p sec:authorize="hasRole('ROLE_ADMIN')"><input type="button" onclick="clickme(5)" value=" click me "/></p>
 <br/>
-
+<!--
 <select id="numRole" name="numRole">
     <option
             th:each="num : ${listNm} "
@@ -99,23 +101,39 @@
     </option>
 </select>
 <button type="submit" onclick="sort()" class="btn btn-primary">sorting</button>
-<a href="UserList?page=1" class="btn btn-primary" >Сбросить</a>
+<a href="UserList?page=1" class="btn btn-primary">Сбросить</a>
 
 <input type="text" th:id="${FindQuery}" placeholder="Поиск"/><br/>
-<a href="UserList?page=1" class="btn btn-primary" >Go</a>
+<a href="UserList?page=1" class="btn btn-primary">Go</a>
+
+-->
+<form th:action="@{/UserList/ex}" name="sortAndPage" th:object="${sortAndPage}" id="sortForm" method="get">
+    <div class="modal-content">
+        <!-- Заголовок модального окна -->
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Поиск</h4>
+        </div>
+        <!-- Основное содержимое модального окна -->
+
+        <div class="modal-body">
+
+            <input type="hidden" th:field="*{page}" placeholder="Page"/><br/>
+            <input type="text" th:field="*{name}" placeholder="Имя"/><br/>
+            <input type="submit" id="submitForm" value="sub"/><br/>
+        </div>
+    </div>
+</form>
+
 <div class="marh">
-
-
-    <table class="simple-little-table">
+    <table id="tableForSort" class="simple-little-table">
         <thead>
         <tr>
-            <th style="width: 100px;">Имя</th>
-            <th style="width: 100px;">Фамилия</th>
-            <th style="width: 100px;">Отчество</th>
-            <th style="width: 100px;">Логин</th>
-            <th style="width: 100px;">Роль</th>
-            <th style="width: 100px;">Изменить/Удалить</th>
-            <th style="width: 100px;">Изменить/Удалить</th>
+            <th data-type="string" style="width: 100px;">Имя</th>
+            <th data-type="string" style="width: 100px;">Фамилия</th>
+            <th data-type="string" style="width: 100px;">Отчество</th>
+            <th data-type="string" style="width: 100px;">Логин</th>
+            <th data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
         </tr>
         </thead>
         <tbody>
@@ -130,10 +148,14 @@
             </td>
         </tr>
         </tbody>
+
     </table>
-    <div class="bot-navigation" th:each="number : ${listNumberPage}" align="center">
-        <a th:href="@{/UserList(page=${number},)}" th:text="${number}">1</a>
-</div>
+    <div>
+        <a th:href="@{'/UserList?' + ${sortAndPage.createHref(firstPage)}}" text="first">first</a>
+        <a th:each="i : ${#numbers.sequence( beginIndex, endIndex)}"
+           th:href="@{'/UserList?' + ${sortAndPage.createHref(i)}}" th:text="${i}">1</a>
+        <a th:href="@{'/UserList?' + ${sortAndPage.createHref(lastPage)}}" text="last">last</a>
+    </div>
 
 
 </div>

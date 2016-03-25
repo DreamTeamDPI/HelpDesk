@@ -148,6 +148,8 @@ window.onload = function () {
                     return rowA.cells[colNum].innerHTML * direct - rowB.cells[colNum].innerHTML * direct;
                 };
                 break;
+            default:
+                return;
         }
 
 

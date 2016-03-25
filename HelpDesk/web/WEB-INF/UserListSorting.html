@@ -17,8 +17,7 @@
 
 <ul id="infoTab" class="nav nav-tabs">
     <li id="firstStepInfoTab"><a th:href="@{/}">Главная</a></li>
-    <li id="secondStepInfoTab" class="active"><a th:href="@{/UserList}">Пользователей <span class="badge"
-                                                                                            th:text="${size}"> null"</span></a>
+    <li id="secondStepInfoTab" class="active"><a th:href="@{/UserList}">Пользователей <span class="badge" th:text="${size}"> null"</span></a>
     </li>
     <li><a th:href="@{/answ}">Тикеты</a></li>
     <li><a th:href="@{/logout}">Выход</a></li>
@@ -60,6 +59,8 @@
             <th id ="surname" data-type="string"  style="width: 100px;">Фамилия</th>
             <th id ="patronimic" data-type="string"  style="width: 100px;">Отчество</th>
             <th id ="login" data-type="string" style="width: 100px;">Логин</th>
+            <th id ="role" data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
+            <th id ="role" data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
             <th id ="role" data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
         </tr>
         </thead>

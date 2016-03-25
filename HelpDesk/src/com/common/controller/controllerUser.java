@@ -7,7 +7,6 @@ package com.common.controller;
 
 
 import com.common.entity.ClassUser;
-import com.common.entity.Role;
 import com.common.entity.User;
 import com.common.helper.sortAndPage;
 import com.common.service.RoleService;
@@ -88,39 +87,52 @@ public class controllerUser {
 
 
     @RequestMapping(value = "UserList", method = RequestMethod.GET)
-    public ModelAndView handleRequest(int page) throws Exception {
-
-        Page<User> pages = user.findAllPages(page - 1);//user.getNotAll(n,k);
-        int totalPages = pages.getTotalPages();
-        int totalElements = (int) pages.getTotalElements();
-        List<User> list = pages.getContent();
-        List<Role> roleList = role.getAll();
-        Map<Integer, String> hashmap = new HashMap<Integer, String>();
-        hashmap.put(1, roleList.get(0).toString());
-        hashmap.put(2, roleList.get(1).toString());
-        System.out.println("===========================");
-
+    public ModelAndView handleRequest(sortAndPage sAP) throws Exception {
         ModelAndView model = new ModelAndView("UserList");
-        model.addObject("userList", list);
-        model.addObject("size", totalElements);
-        model.addObject("roleCollection", hashmap);
+        Map<Integer, String> pnn = new HashMap<>();
         List<Integer> pageNumber = new ArrayList<>();
+        Page<User> pages;
 
+        System.out.println(sAP);
+        sAP.setPage(sAP.getPage() - 1);
 
-        for (int i = 1; i <= totalPages; i++) {
-            pageNumber.add(i);
+        pages = user.findAllPages(sAP);
+
+        for (int j = 1; j <= pages.getTotalPages(); j++) {
+            pageNumber.add(j);
+
+            String s = sAP.createHref(j);
+            pnn.put(j, s);
+
         }
-        model.addObject("listNumberPage", pageNumber);
 
-        User us = new User();
-        us.setRoleIdRole(2);
-        model.addObject("newUser", us);
+        List<User> list = pages.getContent();
+        sAP.setPage(sAP.getPage() + 1);
 
-        model.addObject("listNm", roleList);
-        List<User> llistByPred = user.getByPredicate();
-        System.out.println(llistByPred);
+
+
+        int step = 1;
+        int current = sAP.getPage();
+
+        if(current == 1)step = 2;
+        if(current == pages.getTotalPages())step = 2;
+
+        int begin = Math.max(1, current - step);
+        int end = Math.min(current + step, pages.getTotalPages());
+
+        model.addObject("firstPage",1);
+        model.addObject("lastPage",pages.getTotalPages());
+
+        model.addObject("beginIndex", begin);
+        model.addObject("endIndex", end);
+
+        model.addObject("sortAndPage",sAP);
+        model.addObject("userList", list);
+
+        model.addObject("size", pages.getTotalElements());
 
         return model;
+
     }
 
     @RequestMapping(value = "UserList/time", method = RequestMethod.GET)
