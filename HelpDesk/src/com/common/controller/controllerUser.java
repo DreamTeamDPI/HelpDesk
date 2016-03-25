@@ -27,12 +27,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * @author SemmEs
  */
 @Controller
 public class controllerUser {
-
+    
     @Autowired
     UserService user;
     @Autowired
@@ -180,6 +181,7 @@ public class controllerUser {
     public
     @ResponseBody
     User editUser(int id) {
+
         User listUsers = user.findByidUser(id);
 
 

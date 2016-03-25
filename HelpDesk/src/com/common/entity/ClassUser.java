@@ -12,7 +12,7 @@ public class ClassUser implements Serializable {
     @NotNull
     private int idUser;
 
-    @Size(min=10)
+    @Size(min=2)
     private String firstName;
 
     private String lastName;
