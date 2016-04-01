@@ -49,7 +49,7 @@
 <!-- HTML-код модального окна -->
 <div id="myModalBox" class="modal fade">
     <div class="modal-dialog">
-        <form onsubmit="return false;" name="User" id="addForm" method="post">
+
             <div class="modal-content">
                 <!-- Заголовок модального окна -->
                 <div class="modal-header">
@@ -58,33 +58,38 @@
                 </div>
                 <!-- Основное содержимое модального окна -->
 
-                <div class="modal-body">
-                    <input type="text" id="idUser" name="idUser" th:value="-1"/><br/>
-                    <input type="text" id="firstName" name="firstName" placeholder="Имя"/><br/>
-                    <input type="text" id="lastName" name="lastName" placeholder="Фамилия"/><br/>
-                    <input type="text" id="login" name="login" placeholder="Логин"/><br/>
-                    <input type="text" name="password" placeholder="Пароль"/><br/>
+                <div class="modal-body" >
+                    <div align="center">
+                        <form onsubmit="return false;" name="User" id="addForm" method="post">
+                        <input type="hidden" id="idUser" name="idUser" th:value="-1"/><br/>
+                        <input type="text" id="firstName" name="firstName" placeholder="Имя"/><br/>
+                        <input type="text" id="lastName" name="lastName" placeholder="Фамилия"/><br/>
+                        <input type="text" id="login" name="login" placeholder="Логин"/><br/>
+                        <input type="text" name="password" placeholder="Пароль"/><br/>
 
-                    <select id="role" name="roleIdRole">
-                        <option
+                        <select id="role" name="roleIdRole">
+                            <option
 
-                                th:each="role: ${roleList} "
-                                th:value=" ${role.nameRole}"
-                                th:text="${role.nameRole}"
-                        >Black
-                        </option>
+                                    th:each="role: ${roleList} "
+                                    th:value=" ${role.nameRole}"
+                                    th:text="${role.nameRole}"
+                            >Black
+                            </option>
 
-                    </select>
+                        </select>
+
+                        </form>
+                    </div>
 
                 </div>
 
                 <!-- Футер модального окна -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                    <button type="submit" onclick="addUser()" class="btn btn-primary">Сохранить изменения</button>
+
+                        <button type="button" class="" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" onclick="addUser()" class="">Сохранить изменения</button>
                 </div>
             </div>
-        </form>
     </div>
 </div>
 
@@ -134,8 +139,10 @@
             <th data-type="string" style="width: 100px;">Отчество</th>
             <th data-type="string" style="width: 100px;">Логин</th>
             <th data-type="number" style="width: 100px;">Роль</th>
-            <th data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
-            <th data-type="" style="width: 100px;">Удалить</th>
+           <!-- <th data-type="number" th:name="Role_idRole" style="width: 100px;">Роль</th>
+            <th data-type="" style="width: 100px;">Удалить</th>-->
+            <th></th>
+            <th></th>
 
         </tr>
         </thead>
