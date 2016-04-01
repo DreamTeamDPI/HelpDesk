@@ -5,10 +5,11 @@
  */
 package com.common.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 
 /**
@@ -16,8 +17,9 @@ import org.springframework.context.annotation.Import;
  * @author SEMEN
  */
 @Configuration
-@Import({ThymeleafConfig.class, DataConfig.class, SecurityConfiguration.class})
+@Import({ThymeleafConfig.class, DataConfig.class, SecurityConfiguration.class, ScheduleConfig.class})
 @ComponentScan("com.common.service.*")
 public class AppConfig {
-    
+
+
 }

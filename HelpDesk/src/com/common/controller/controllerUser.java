@@ -14,6 +14,7 @@ import com.common.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ public class ControllerUser {
     private static final Logger loger_all = Logger.getLogger(ControllerUser.class);
     private static final Logger logger_edit = Logger.getLogger("APP");
     private static final Logger logger_delete = Logger.getLogger("EDITUSER");
+    private static final Logger logger_test = Logger.getLogger("Test");
 
     @Autowired
     UserService user;
@@ -90,7 +92,6 @@ public class ControllerUser {
 
     }
 
-
     @RequestMapping(value = "UserList", method = RequestMethod.GET)
     public ModelAndView handleRequest(sortAndPage sAP) throws Exception {
         ModelAndView model = new ModelAndView("UserList");
@@ -143,6 +144,7 @@ public class ControllerUser {
 
 
         loger_all.info("Ok/ it's worked");
+        logger_test.info("Тестируем архив");
 
 
         return model;
